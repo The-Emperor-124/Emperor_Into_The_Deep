@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@TeleOp(name="JocDeButoane2025", group="Linear Opmode")
+@TeleOp(name="Mecanum_AnalogSticks2025", group="Linear Opmode")
 //@Disabled
 public class Mecanum_AnalogSticks2025 extends LinearOpMode {
 
@@ -20,7 +20,7 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
     DcMotor leftRear, leftFront, rightRear, rightFront, motor_brat1,motor_brat2;;
 
     Servo servo_tg1, servo_tg2,servoGrDr,servoGrSta;
-
+    
 
 
 
@@ -32,8 +32,8 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
         rightRear           = hardwareMap.dcMotor.get("rightRear");
         rightFront          = hardwareMap.dcMotor.get("rightFront");
 
-        servo_tg1=hardwareMap.servo.get("servo_tg1");
-        servo_tg2=hardwareMap.servo.get("servo_tg2");
+        servo_tg1=hardwareMap.servo.get("servo_tg_stanga");
+        servo_tg2=hardwareMap.servo.get("servo_tg_dreapta");
         servoGrDr=hardwareMap.servo.get("servoGrDr");
         servoGrSta=hardwareMap.servo.get("servoGrSta");
         motor_brat1 =hardwareMap.dcMotor.get("motor_brat1");
@@ -50,8 +50,8 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
         servoGrSta.setDirection(Servo.Direction.REVERSE);
         servo_tg2.setPosition(0.01);
         servo_tg1.setPosition(0.01);
-        servoGrDr.setPosition(0.76);
-        servoGrSta.setPosition(0.89);
+        servoGrDr.setPosition(0.85);
+        servoGrSta.setPosition(-0.89);
 
     double power;
 
@@ -118,13 +118,13 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.y)
             {
+                servoGrSta.setPosition(0.24);
                 servoGrDr.setPosition(0.94);
-                servoGrSta.setPosition(0.95);
             }
             if(gamepad2.a)
             {
-                servoGrSta.setPosition(0.89);
-                servoGrDr.setPosition(0.76);
+                servoGrSta.setPosition(-0.89);
+                servoGrDr.setPosition(0.85);
             }
             if (gamepad2.left_trigger>0.0)
             {
