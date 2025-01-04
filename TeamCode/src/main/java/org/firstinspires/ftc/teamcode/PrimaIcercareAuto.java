@@ -101,6 +101,7 @@ public class PrimaIcercareAuto extends LinearOpMode {
           .lineToY(33)
                 .waitSeconds(3)
                 .setTangent(Math.toRadians(90));
+
         Action trajectoryActionCloseOut = p1.endTrajectory().fresh()
                 .strafeTo(new Vector2d(0, 0))
                 .build();

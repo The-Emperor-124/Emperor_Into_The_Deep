@@ -79,7 +79,7 @@ public class Autopetimp extends LinearOpMode {
         rightFront.setPower(FORWARD_SPEED);
         rightRear.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 2.1)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.7)) {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -93,7 +93,7 @@ public class Autopetimp extends LinearOpMode {
         rightRear.setPower(-TURN_SPEED);
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.3)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.4)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -159,6 +159,23 @@ public class Autopetimp extends LinearOpMode {
             telemetry.update();
         }
     }
+    public void spate()
+    {
+        leftRear.setPower(-FORWARD_SPEED);
+        leftFront.setPower(-FORWARD_SPEED);
+        rightFront.setPower(-FORWARD_SPEED);
+        rightRear.setPower(-FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+    }
+    public void pozitie()
+    {
+        servo_tg1.setPosition(0.12);
+        servo_tg2.setPosition(0.12);
+    }
 
     @Override
     public void runOpMode() {
@@ -187,8 +204,8 @@ public class Autopetimp extends LinearOpMode {
         servoGrSta.setDirection(Servo.Direction.REVERSE);
         servo_tg2.setPosition(0.01);
         servo_tg1.setPosition(0.01);
-        servoGrDr.setPosition(0.85);//0.85
-        servoGrSta.setPosition(-0.89);//-0.89
+        servoGrDr.setPosition(0.82);//0.85
+        servoGrSta.setPosition(-0.87);//-0.89
 
 
 
@@ -198,16 +215,16 @@ public class Autopetimp extends LinearOpMode {
 
         // Wait for the game to start (driver presses START)
         waitForStart();
-
+        pozitie();
         fata();
         strafe_left();
         stopi();
         sleep(50);
-       ridica_glisiera();
-       servo_tg2.setPosition(0.10);
-       servo_tg1.setPosition(0.10);
+       //ridica_glisiera();
+
        pune_caramida();
-        coborare_glisiera();
+      //  coborare_glisiera();
+        spate();
        /*strafe_right();
        fata();
         strafe_left();*/

@@ -20,9 +20,22 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
     DcMotor leftRear, leftFront, rightRear, rightFront, motor_brat1,motor_brat2;;
 
     Servo servo_tg1, servo_tg2,servoGrDr,servoGrSta;
-    
 
+double power1,power2,posi1,posi2;
+    public void pos1(int position,double power1)
+    {motor_brat1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor_brat1.setTargetPosition(position);
+        motor_brat1.setPower(power1);
+        motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+    }
+    public void pos2(int position,double power2)
+    {
+        motor_brat2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor_brat2.setTargetPosition(position);
+        motor_brat2.setPower(power2);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
 
     @Override
     public void runOpMode() {
@@ -50,8 +63,13 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
         servoGrSta.setDirection(Servo.Direction.REVERSE);
         servo_tg2.setPosition(0.01);
         servo_tg1.setPosition(0.01);
-        servoGrDr.setPosition(0.85);
-        servoGrSta.setPosition(-0.89);
+        servoGrDr.setPosition(0.82);
+        servoGrSta.setPosition(-0.87);
+        motor_brat1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor_brat2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
     double power;
 
@@ -96,15 +114,21 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
 
 
             telemetry.update();
+            if(gamepad2.left_bumper && gamepad2.right_bumper)
+            {
+                motor_brat1.setPower(0);
+                motor_brat2.setPower(0);
+
+            }
             if(gamepad2.dpad_up)
             {
                 servo_tg1.setPosition(0);
-                servo_tg2.setPosition(0);
+               servo_tg2.setPosition(0);
             }
             if(gamepad2.dpad_down)
             {
-                servo_tg2.setPosition(0.40);
-                servo_tg1.setPosition(0.40);
+                servo_tg2.setPosition(0.39);
+                servo_tg1.setPosition(0.39);
             }
             if(gamepad2.dpad_right)
             {
@@ -123,29 +147,50 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.a)
             {
-                servoGrSta.setPosition(-0.89);
-                servoGrDr.setPosition(0.85);
+                servoGrSta.setPosition(-0.87);
+                servoGrDr.setPosition(0.82);
             }
             if (gamepad2.left_trigger>0.0)
-            {
+            {   motor_brat1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                motor_brat2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                posi1=motor_brat1.getCurrentPosition();
+                posi2=motor_brat2.getCurrentPosition();
                 motor_brat1.setPower(-0.87);
                 motor_brat2.setPower(1.0);
+
             }
             else
-            {
-                motor_brat1.setPower(0.0);
-                motor_brat2.setPower(0.0);
+            { if(posi1<1.0 && posi2<1.0) { motor_brat1.setPower(0); motor_brat2.setPower(0);}
+                motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motor_brat1.setTargetPosition((int)(posi1));
+                motor_brat2.setTargetPosition((int)(posi2));
+                //motor_brat1.setPower(-0.1);
+               // motor_brat2.setPower(0.1);
+                motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
 
             if (gamepad2.right_trigger>0.0)
-            {
+            {motor_brat1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                motor_brat2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                posi1=motor_brat1.getCurrentPosition();
+                posi2=motor_brat2.getCurrentPosition();
                 motor_brat1.setPower(1.0);
                 motor_brat2.setPower(-1.0);
+
+
             }
             else
-            {
-                motor_brat1.setPower(0.0);
-                motor_brat2.setPower(0.0);
+            {   if(posi1<1.0 && posi2<1.0) { motor_brat1.setPower(0); motor_brat2.setPower(0);}
+                motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motor_brat1.setTargetPosition((int)(posi1));
+                motor_brat2.setTargetPosition((int)(posi2));
+                motor_brat1.setPower(0.01);
+                motor_brat2.setPower(-0.01);
+                motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
 
 
