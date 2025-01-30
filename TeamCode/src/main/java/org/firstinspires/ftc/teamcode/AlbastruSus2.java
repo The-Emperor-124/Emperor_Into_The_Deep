@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.tuning;
+package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -57,10 +57,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 @Config
-@Autonomous(name="Autopetimp", group="Autonomous")
+@Autonomous(name="AlbastruSus2", group="Autonomous")
 
 
-public class Autopetimp extends LinearOpMode {
+public class AlbastruSus2 extends LinearOpMode {
 
     /* Declare OpMode members. */
     DcMotor leftRear, leftFront, rightRear, rightFront, motor_brat1,motor_brat2;;
@@ -69,6 +69,7 @@ public class Autopetimp extends LinearOpMode {
 
     private ElapsedTime     runtime = new ElapsedTime();
 
+    double posi1,posi2;
 
     static final double     FORWARD_SPEED = 0.3;
     static final double     TURN_SPEED    = 0.5;
@@ -93,7 +94,7 @@ public class Autopetimp extends LinearOpMode {
         rightRear.setPower(-TURN_SPEED);
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.4)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.4)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -103,7 +104,7 @@ public class Autopetimp extends LinearOpMode {
         servoGrSta.setPosition(0.24);
         servoGrDr.setPosition(0.94);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.24)) {
             telemetry.addData("Path", "Leg 3: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -116,7 +117,7 @@ public class Autopetimp extends LinearOpMode {
         rightRear.setPower(TURN_SPEED);
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() <1.5)) {
+        while (opModeIsActive() && (runtime.seconds() <1)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -125,21 +126,32 @@ public class Autopetimp extends LinearOpMode {
     {
         motor_brat2.setPower(-0.8);
         motor_brat1.setPower(0.8);
+        motor_brat1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        posi1=motor_brat1.getCurrentPosition();
+        posi2=motor_brat2.getCurrentPosition();
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() <0.5)) {
+        while (opModeIsActive() && (runtime.seconds() <0.3)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
     }
     public void coborare_glisiera()
     {
-        motor_brat2.setPower(0.7);
-        motor_brat1.setPower(-0.7);
+
+        motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor_brat1.setTargetPosition((int)(posi1));
+        motor_brat2.setTargetPosition((int)(posi2));
+        //motor_brat1.setPower(-0.1);
+        // motor_brat2.setPower(0.1);
+        motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() <0.2)) {
+      /*  while (opModeIsActive() && (runtime.seconds() <0.2)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
-        }
+        }*/
     }
     public void stopi()
     {
@@ -154,7 +166,7 @@ public class Autopetimp extends LinearOpMode {
         rightFront.setPower(FORWARD_SPEED);
         rightRear.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.1)) {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -176,6 +188,38 @@ public class Autopetimp extends LinearOpMode {
         servo_tg1.setPosition(0.12);
         servo_tg2.setPosition(0.12);
     }
+    public void rotire()
+    {
+        leftRear.setPower(FORWARD_SPEED);
+        leftFront.setPower(FORWARD_SPEED);
+        rightRear.setPower(-FORWARD_SPEED);
+        rightFront.setPower(-FORWARD_SPEED);
+        while (opModeIsActive() && (runtime.seconds() < 0.3)) {
+            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+
+    }
+    void stopglisi()
+    {
+        motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor_brat1.setTargetPosition((int)(posi1));
+        motor_brat2.setTargetPosition((int)(posi2));
+        motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+    public void  rotstg()
+    {
+        leftRear.setPower(-FORWARD_SPEED);
+        leftFront.setPower(-FORWARD_SPEED);
+        rightRear.setPower(FORWARD_SPEED);
+        leftRear.setPower(FORWARD_SPEED);
+        while (opModeIsActive() && (runtime.seconds() < 0.3)) {
+            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+    }
 
     @Override
     public void runOpMode() {
@@ -192,6 +236,8 @@ public class Autopetimp extends LinearOpMode {
         servoGrSta=hardwareMap.servo.get("servoGrSta");
         motor_brat1 =hardwareMap.dcMotor.get("motor_brat1");
         motor_brat2=hardwareMap.dcMotor.get("motor_brat2");
+        motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 
@@ -202,8 +248,8 @@ public class Autopetimp extends LinearOpMode {
         rightRear.setDirection(DcMotor.Direction.FORWARD);
         servo_tg2.setDirection(Servo.Direction.REVERSE);
         servoGrSta.setDirection(Servo.Direction.REVERSE);
-        servo_tg2.setPosition(0.01);
-        servo_tg1.setPosition(0.01);
+        servo_tg2.setPosition(0.55);
+        servo_tg1.setPosition(0.55);
         servoGrDr.setPosition(0.82);//0.85
         servoGrSta.setPosition(-0.87);//-0.89
 
@@ -215,20 +261,34 @@ public class Autopetimp extends LinearOpMode {
 
         // Wait for the game to start (driver presses START)
         waitForStart();
-        pozitie();
-        fata();
-        strafe_left();
-        stopi();
-        sleep(50);
-       //ridica_glisiera();
-
-       pune_caramida();
+        // pozitie();
+        //fata_mic();
+        //rotstg();
+        //fata();
+        //ridica_glisiera();
+        //stopglisi();
+        //pune_caramida();
+        //spate();
       //  coborare_glisiera();
-        spate();
-       /*strafe_right();
+       /* strafe_left();
+        fata(); fata_mic(); fata_mic(); fata_mic();
+        strafe_right();
+        rotire();
+        ridica_glisiera();
+        rotire();
+        ridica_glisiera();
+        coborare_glisiera();
+        sleep(50);
+        //ridica_glisiera();
+
+        //pune_caramida();
+        //  coborare_glisiera();
+        // spate();
+       strafe_right();
        fata();
         strafe_left();*/
-        stopi();
+        //stopi();
+        strafe_left();
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

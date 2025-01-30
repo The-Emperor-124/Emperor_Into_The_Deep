@@ -31,8 +31,11 @@ package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /*
  * This file works in conjunction with the External Hardware Class sample called: ConceptExternalHardwareClass.java
@@ -74,6 +77,9 @@ public class RobotHardware {
     // Define a constructor that allows the OpMode to pass a reference to itself.
     public RobotHardware (LinearOpMode opmode) {
         myOpMode = opmode;
+    }
+
+    public RobotHardware(HardwareMap hardwareMap, Telemetry telemetry) {
     }
 
     /**
