@@ -83,7 +83,7 @@ public class AutoCosRosu extends LinearOpMode {
                 return false;
             }
         }
-        public Action pozitie_obliga_gheara() {
+        public Action pozitie_jos() {
             return new pozitie_obliga_gheara();
         }
 
@@ -308,15 +308,23 @@ public class AutoCosRosu extends LinearOpMode {
                 //.strafeToConstantHeading(new Vector2d(-68.9,69.1));
                 .turnTo(179.7);
         TrajectoryActionBuilder p25=p2.endTrajectory().fresh()
-                .lineToX(-63.2);
+                .lineToX(-64.2);
         TrajectoryActionBuilder p26=p25.endTrajectory().fresh()
                 .lineToX(-54.9);
-        TrajectoryActionBuilder p3=p26.endTrajectory().fresh()
-                .strafeTo(new Vector2d(-23.8,-69.4));
+        //TrajectoryActionBuilder p3=p26.endTrajectory().fresh()
+          //      .strafeTo(new Vector2d(-23.8,-69.4));
 
-        TrajectoryActionBuilder p4=p3.endTrajectory().fresh()
-                .strafeTo(new Vector2d(55.6,-62.8));
-        Action trajectoryActionCloseOut = p3.endTrajectory().fresh()
+        TrajectoryActionBuilder p4=p26.endTrajectory().fresh()
+                .turnTo(89.5);
+        TrajectoryActionBuilder p5=p4.endTrajectory().fresh()
+                .lineToX(-48);
+         TrajectoryActionBuilder p6=p5.endTrajectory().fresh()
+                 .lineToX(-54.9);
+         TrajectoryActionBuilder p7=p6.endTrajectory().fresh()
+                 .turnTo(179.8);//90.69
+        TrajectoryActionBuilder p8=p7.endTrajectory().fresh()
+                .lineToX(-62.4);
+        Action trajectoryActionCloseOut = p8.endTrajectory().fresh()
                 .build();
 
         // Execute some actions before starting the trajectory
@@ -338,9 +346,21 @@ public class AutoCosRosu extends LinearOpMode {
                         gheara.lasareGheara(),
                         gheara.ridicare_gheara_brat(),
                         p26.build(),
-                        glisiera.JosGlisi(),
-                        p3.build(),
-                        p4.build()
+                        glisiera.JosGlisi()
+                        //ce e nou
+
+                    /*    p4.build(),
+                        p5.build(),
+                        gheara.pozitie_jos(),
+                        gheara.prindereGhera(),
+                        gheara.ridicare_gheara_brat(),
+                        p6.build(),
+                        p7.build(),
+                        glisiera.GlisieraSusCos(),
+                        p8.build(),
+                        gheara.lasareGheara()*/
+
+
 
                 )
         );

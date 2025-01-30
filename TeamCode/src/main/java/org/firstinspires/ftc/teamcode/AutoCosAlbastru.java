@@ -308,7 +308,7 @@ public class AutoCosAlbastru extends LinearOpMode {
                 //.strafeToConstantHeading(new Vector2d(-68.9,69.1));
                 .turnTo(359);
         TrajectoryActionBuilder p25=p2.endTrajectory().fresh()
-                .lineToX(63.2);
+                .lineToX(64.2);
         TrajectoryActionBuilder p26=p25.endTrajectory().fresh()
                 .lineToX(54.9);
         TrajectoryActionBuilder p3=p26.endTrajectory().fresh()
