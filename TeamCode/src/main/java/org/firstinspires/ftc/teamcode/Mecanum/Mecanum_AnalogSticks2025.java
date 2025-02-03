@@ -118,27 +118,30 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
 
             if(gamepad1.right_bumper)
             {
-                ridicareDr.setPower(1); //asta e port 3
-                ridiacareStg.setPower(1); //asta e port 0
-            }
-            if(gamepad1.left_bumper) {
-               // ridicareDr.setPower(-0.6);
-                ridiacareStg.setPower(-1);
-            }
-            if(gamepad1.a)
-            {
                 ridiacareStg.setPower(0.6);
             }
             else
             {
                 ridiacareStg.setPower(0);
             }
+            if(gamepad1.left_bumper) {
+               // ridicareDr.setPower(-0.6);
+                ridiacareStg.setPower(-1);
+            }
+            if( gamepad1.b)
+            {
+                ridicareDr.setPower(1); //asta e port 3
+                ridiacareStg.setPower(1); //asta e port 0
+                servo_tg1.setPosition(0.4);
+                servo_tg2.setPosition(0.4);
+            }
+
 
 
             if(gamepad2.right_bumper)
             {
                 //motor_brat1.setPower(0);//motor_brat2.setPower(0);
-                servo_tg1.setPosition(0.72); //a fot 0.69 la ambele
+                servo_tg1.setPosition(0.72); //a fost 0.69 la ambele
                 servo_tg2.setPosition(0.72);
             }
             if(gamepad2.left_bumper)
@@ -163,8 +166,8 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.dpad_down)
             {
-                servo_tg1.setPosition(0.86); //0.86 e ok, incerc 0.87
-                servo_tg2.setPosition(0.86);
+                servo_tg1.setPosition(0.85); //0.86 e ok, incerc 0.85
+                servo_tg2.setPosition(0.85);
             }
             if(gamepad2.y)
             {
@@ -174,7 +177,7 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             if(gamepad2.a) //prindere
             {
                 servoGrSta.setPosition(-0.97);//-0.97
-                servoGrDr.setPosition(0.96);//0.97   dupa 0.96
+                servoGrDr.setPosition(0.93);//0.97   dupa 0.96
             }
             //cod pt glisiera constanta
             if (gamepad2.left_trigger>0.0)

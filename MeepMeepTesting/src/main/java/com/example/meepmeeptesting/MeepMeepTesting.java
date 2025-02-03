@@ -21,12 +21,21 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-17.8, -70.1, 89.5)) //pt albasru -20 66 80
-                .strafeTo(new Vector2d(-59.4,-58.7)) // pt albastru -10 27.7, math....0
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(17.8, 70.1, -89.5)) //pt albasru -20 66 80
+                .strafeTo(new Vector2d(60.3,61.2)) // pt albastru -10 27.7, math....0
                     //    .strafeToConstantHeading(new Vector2d(-68.9,69.1))//pt albastru -68.9 69.1
-                        .turnTo(179.7)//180
-                        .lineToX(-62.4)
-                        .lineToX(-54.9)
+                        .turnTo(358.8)//180
+                        .lineToX(66.7)
+                        .lineToX(61.5)
+                                .turnTo(-89.5)
+                                .strafeToConstantHeading(new Vector2d(54,58))
+                               /* .turnTo(-89.5)
+                                .strafeToConstantHeading(new Vector2d(44.1,56.2))
+                                .strafeToConstantHeading(new Vector2d(44.1,-10))
+                                //.turnTo(179.9)
+                .turnTo(179.1)
+                                .lineToX(16)*/
+
 
 
                                 //.strafeTo(new Vector2d(-23.8,-69.4))

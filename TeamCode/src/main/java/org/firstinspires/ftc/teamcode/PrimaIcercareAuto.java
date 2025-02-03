@@ -9,6 +9,7 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Trajectory;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.VelConstraint;
@@ -230,7 +231,9 @@ public class PrimaIcercareAuto extends LinearOpMode {
                                 new ParallelAction(
                                         gheara.pozitie_obliga(),
                                         glisiera.GlisieraSus()
+
                                 )
+                        // new SleepAction(0.1)
 
                 )
         );

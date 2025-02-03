@@ -301,7 +301,7 @@ public class AutoCosRosu extends LinearOpMode {
 
         // Create a trajectory action
         TrajectoryActionBuilder p1 = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(-61.5,-59.7));
+                .strafeToConstantHeading(new Vector2d(-61,-58.9));
 
         //.lineToY(-0.006);
         TrajectoryActionBuilder p2=p1.endTrajectory().fresh()
@@ -346,10 +346,10 @@ public class AutoCosRosu extends LinearOpMode {
                         gheara.lasareGheara(),
                         gheara.ridicare_gheara_brat(),
                         p26.build(),
-                        glisiera.JosGlisi()
+                        glisiera.JosGlisi(),
                         //ce e nou
 
-                    /*    p4.build(),
+                       p4.build(),
                         p5.build(),
                         gheara.pozitie_jos(),
                         gheara.prindereGhera(),
@@ -358,7 +358,7 @@ public class AutoCosRosu extends LinearOpMode {
                         p7.build(),
                         glisiera.GlisieraSusCos(),
                         p8.build(),
-                        gheara.lasareGheara()*/
+                        gheara.lasareGheara()
 
 
 
