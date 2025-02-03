@@ -468,8 +468,12 @@ else{
                         // Perform the trajectory
 
                         p1.build(),
-                        p2.build(),
-                        glisiera.GlisieraSusCos(),
+                        new ParallelAction(
+                                p2.build(),
+                                        //new SleepAction(0.02),
+                                        glisiera.GlisieraSusCos()
+
+                        ),
                         p25.build(),
                         gheara.lasareGheara(),
                         gheara.ridicare_gheara_brat(),
@@ -494,21 +498,13 @@ else{
 
                         new ParallelAction(
                                 p4.build(),
-                                new SequentialAction(
-                                        new SleepAction(0.2),
-                                        glisiera.GlisieraSusCos()
-                                )
+                                glisiera.GlisieraSusCos()
                         ),
-
-
                         p5.build(),
-                                gheara.lasareGheara(),
-                                p6.build(),
-                                glisiera.JosGlisi(),
-                                trajectoryActionCloseOut
-
-
-
+                        gheara.lasareGheara(),
+                        p6.build(),
+                        glisiera.JosGlisi(),
+                        trajectoryActionCloseOut
                       //glisiera.parcareGlisi(),
                      //glisiera.parcareGlisi(),
 
