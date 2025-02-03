@@ -450,6 +450,7 @@ else{
         TrajectoryActionBuilder p6=p5.endTrajectory().fresh()
                 .lineToX(61.5);
 
+
         Action trajectoryActionCloseOut = p6.endTrajectory().fresh()
                 .build();
 
@@ -464,6 +465,7 @@ else{
 
         // Execute the planned actions after the start
         Actions.runBlocking(
+                /*
                 new SequentialAction(
                         // Perform the trajectory
 
@@ -474,6 +476,7 @@ else{
                                         glisiera.GlisieraSusCos()
 
                         ),
+                        new SleepAction(0.5),
                         p25.build(),
                         gheara.lasareGheara(),
                         gheara.ridicare_gheara_brat(),
@@ -483,23 +486,24 @@ else{
                        p3.build(),
                         gheara.pozitie_obliga_gheara(),
                         new SleepAction(0.6),
-                                gheara.prindereGhera(),
-                                new SleepAction(0.4),
-                                gheara.ridicare_gheara_brat(),
-                                 new SleepAction(0.5),
+                        gheara.prindereGhera(),
+                        new SleepAction(0.4),
+                        gheara.ridicare_gheara_brat(),
+                        new SleepAction(0.5),
 
-                                /*// aici decomenteaza daca nu merge
+                                // aici decomenteaza daca nu merge
                                 new ParallelAction(
                                         p4.build(),
                                         glisiera.GlisieraSusCos()
                                 ),
 
-                                 */
+
 
                         new ParallelAction(
                                 p4.build(),
                                 glisiera.GlisieraSusCos()
                         ),
+                        new SleepAction(0.5),
                         p5.build(),
                         gheara.lasareGheara(),
                         p6.build(),
@@ -511,6 +515,60 @@ else{
 
 
 
+                )*/
+
+                new SequentialAction(
+                        // Initial trajectory and parallel movement of glisiera
+                        p1.build(),
+                        new ParallelAction(
+                                p2.build(),
+                                glisiera.GlisieraSusCos()
+                        ),
+
+                        // Move to position and operate gheara
+                        p25.build(),
+                        new ParallelAction(
+                                gheara.lasareGheara(),
+                                gheara.ridicare_gheara_brat()
+                        ),
+
+                        // Continue movement while adjusting glisiera
+                        new ParallelAction(
+                                p26.build(),
+                                glisiera.JosGlisi()
+                        ),
+
+                        // Move to next position and prepare gheara
+                        p3.build(),
+                        gheara.pozitie_obliga_gheara(),
+
+                        // Sleep for synchronization, then grip and lift with minimal delays
+                        new SequentialAction(
+                                new SleepAction(0.6),
+                                gheara.prindereGhera(),
+                                new SleepAction(0.4),
+                                gheara.ridicare_gheara_brat(),
+                                new SleepAction(0.5)
+                        ),
+
+                        // Move and lift simultaneously
+                        new ParallelAction(
+                                p4.build(),
+                                glisiera.GlisieraSusCos()
+                        ),
+
+                        // Move to drop-off and release object
+                        p5.build(),
+                        gheara.lasareGheara(),
+
+                        // Move and lower glisiera simultaneously
+                        new ParallelAction(
+                                p6.build(),
+                                glisiera.JosGlisi()
+                        ),
+
+                        // Final trajectory to close out
+                        trajectoryActionCloseOut
                 )
         );
     }
