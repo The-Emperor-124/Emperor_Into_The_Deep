@@ -188,7 +188,7 @@ public class Mecanum_AnalogSticks2025_Encodere extends LinearOpMode {
 
             }
             else
-            {   if(posi1<1.0 && posi2<1.0) { motor_brat1.setPower(0); motor_brat2.setPower(0);}
+            {   //if(posi1<1.0 && posi2<1.0) { motor_brat1.setPower(0); motor_brat2.setPower(0);}
                 motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motor_brat1.setTargetPosition((int)(posi1));

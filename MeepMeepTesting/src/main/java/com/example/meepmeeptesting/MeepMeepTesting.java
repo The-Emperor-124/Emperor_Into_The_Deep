@@ -29,6 +29,8 @@ public class MeepMeepTesting {
                         .lineToX(61.5)
                                 .turnTo(-89.5)
                                 .strafeToConstantHeading(new Vector2d(54,58))
+                                .turnTo(88.4)
+                                .strafeToConstantHeading(new Vector2d(61.3,62))
                                /* .turnTo(-89.5)
                                 .strafeToConstantHeading(new Vector2d(44.1,56.2))
                                 .strafeToConstantHeading(new Vector2d(44.1,-10))

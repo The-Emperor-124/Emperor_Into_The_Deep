@@ -6,12 +6,15 @@ import androidx.annotation.Nullable;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.AngularVelConstraint;
+import com.acmerobotics.roadrunner.MinVelConstraint;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Trajectory;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
+import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.VelConstraint;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -21,6 +24,8 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import java.util.Arrays;
 
 @Autonomous(name="AutoCosAlbastru", group = "Autonomous")
 public class AutoCosAlbastru extends LinearOpMode {
@@ -54,8 +59,8 @@ public class AutoCosAlbastru extends LinearOpMode {
         public class LasareGheara implements Action {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                servoGrDr.setPosition(0.80);
-                servoGrSta.setPosition(0.24);
+                servoGrDr.setPosition(0.78);
+                servoGrSta.setPosition(0.28);
                 return false;
             }
         }
@@ -79,8 +84,8 @@ public class AutoCosAlbastru extends LinearOpMode {
         public class pozitie_obliga_gheara implements Action {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                servo_tg1.setPosition(0.83);
-                servo_tg2.setPosition(0.83);
+                servo_tg1.setPosition(0.9);
+                servo_tg2.setPosition(0.9);
                 return false;
             }
         }
@@ -194,44 +199,50 @@ public class AutoCosAlbastru extends LinearOpMode {
         }
 
         public class Sus_Glisi_cos implements Action {
+            private boolean isstarte=false;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                // Add logging to make sure the motor is running
-                telemetry.addData("Glisiera", "Attempting to move up");
-                telemetry.update();
-
-                // Test if motors are responding
-                motor_brat1.setPower(0.6); // Set a fixed power to the motor
-                motor_brat2.setPower(0.6);
-
-                // Set target positions for the motors (these should be reasonable values based on your system)
-                motor_brat1.setTargetPosition(3753);
-                motor_brat2.setTargetPosition(-3765);
-
-                motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-                // Log the motor target positions
-                telemetry.addData("Motor 1 Target", motor_brat1.getTargetPosition());
-                telemetry.addData("Motor 2 Target", motor_brat2.getTargetPosition());
-                telemetry.update();
-
-                // Wait until the motors reach their target positions
-                while (opModeIsActive() && motor_brat1.isBusy() && motor_brat2.isBusy()) {
-                    telemetry.addData("Motor 1", "Position: " + motor_brat1.getCurrentPosition());
-                    telemetry.addData("Motor 2", "Position: " + motor_brat2.getCurrentPosition());
+                if(!isstarte) {
+                    // Add logging to make sure the motor is running
+                    telemetry.addData("Glisiera", "Attempting to move up");
                     telemetry.update();
-                }
-                motor_brat1.getCurrentPosition();
-                motor_brat2.getCurrentPosition();
 
-                // Stop motors after reaching the target
-                motor_brat1.setPower(0.11);
-                motor_brat2.setPower(-0.11);
+                    // Test if motors are responding
+                    motor_brat1.setPower(0.6); // Set a fixed power to the motor
+                    motor_brat2.setPower(0.6);
+
+                    // Set target positions for the motors (these should be reasonable values based on your system)
+                    motor_brat1.setTargetPosition(3753);
+                    motor_brat2.setTargetPosition(-3765);
+
+                    motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    // Log the motor target positions
+                    telemetry.addData("Motor 1 Target", motor_brat1.getTargetPosition());
+                    telemetry.addData("Motor 2 Target", motor_brat2.getTargetPosition());
+                    telemetry.update();
+
+                    // Wait until the motors reach their target positions
+                    while (opModeIsActive() && motor_brat1.isBusy() && motor_brat2.isBusy()) {
+                        telemetry.addData("Motor 1", "Position: " + motor_brat1.getCurrentPosition());
+                        telemetry.addData("Motor 2", "Position: " + motor_brat2.getCurrentPosition());
+                        telemetry.update();
+                    }
+                    motor_brat1.getCurrentPosition();
+                    motor_brat2.getCurrentPosition();
+                }
+                if(motor_brat1.isBusy() && motor_brat2.isBusy()) { return false;}
+else{
+                    // Stop motors after reaching the target
+                    motor_brat1.setPower(0.11);
+                    motor_brat2.setPower(-0.11);
+
 
                 telemetry.addData("Glisiera", "Movement complete");
                 telemetry.update();
                 return false;
+                }
             }
 
 
@@ -288,22 +299,26 @@ public class AutoCosAlbastru extends LinearOpMode {
             return new Jos_Glisi();
         }
         public class Glisi_Parcare implements Action {
+            private  boolean isstarted=false;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                // Add logging to make sure the motor is running
-                telemetry.addData("Glisiera", "Attempting to move up");
-                telemetry.update();
+                if(!isstarted) {
+                    // Add logging to make sure the motor is running
+                    telemetry.addData("Glisiera", "Attempting to move up");
+                    telemetry.update();
 
-                // Test if motors are responding
-                motor_brat1.setPower(-0.6); // Set a fixed power to the motor
-                motor_brat2.setPower(-0.6);
+                    // Test if motors are responding
+                    motor_brat1.setPower(-0.6); // Set a fixed power to the motor
+                    motor_brat2.setPower(-0.6);
 
-                // Set target positions for the motors (these should be reasonable values based on your system)
-                motor_brat1.setTargetPosition(447);
-                motor_brat2.setTargetPosition(-444);
+                    // Set target positions for the motors (these should be reasonable values based on your system)
+                    motor_brat1.setTargetPosition(447);
+                    motor_brat2.setTargetPosition(-444);
 
-                motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    isstarted=true;
+
 
                 // Log the motor target positions
                 telemetry.addData("Motor 1 Target", motor_brat1.getTargetPosition());
@@ -318,14 +333,18 @@ public class AutoCosAlbastru extends LinearOpMode {
                 }
                 motor_brat1.getCurrentPosition();
                 motor_brat2.getCurrentPosition();
+                }
+                if(motor_brat1.isBusy() && motor_brat2.isBusy()){
+                    return  true;}
+                else{
+                    // Stop motors after reaching the target
+                    motor_brat1.setPower(0.11);
+                    motor_brat2.setPower(-0.11);
 
-                // Stop motors after reaching the target
-                motor_brat1.setPower(0.11);
-                motor_brat2.setPower(-0.11);
-
-                telemetry.addData("Glisiera", "Movement complete");
-                telemetry.update();
-                return false;
+                    telemetry.addData("Glisiera", "Movement complete");
+                    telemetry.update();
+                    return false;
+                }
             }
 
 
@@ -365,8 +384,13 @@ public class AutoCosAlbastru extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
         // Create a trajectory action
+        VelConstraint p11= new MinVelConstraint(Arrays.asList(
+                new TranslationalVelConstraint(70.0)
+
+        ));
         TrajectoryActionBuilder p1 = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(60.3,61.2));
+                //.strafeToConstantHeading(new Vector2d(60.3,61.2));
+                .strafeToConstantHeading(new Vector2d(60.3,61.2),p11);
 
         //.lineToY(-0.006);
         TrajectoryActionBuilder p2=p1.endTrajectory().fresh()
@@ -376,17 +400,30 @@ public class AutoCosAlbastru extends LinearOpMode {
                 .lineToX(66.7);
         TrajectoryActionBuilder p26=p25.endTrajectory().fresh()
                 .lineToX(61.5);
+        VelConstraint p33= new MinVelConstraint(Arrays.asList(
+                new TranslationalVelConstraint(60.0),
+                new AngularVelConstraint(Math.PI / 2)
+        ));
         TrajectoryActionBuilder p3=p26.endTrajectory().fresh()
                 .turnTo(-89.5)
-        .strafeToConstantHeading(new Vector2d(54,51.5));
+                .strafeToConstantHeading(new Vector2d(54,51),p33);
+        //.strafeToConstantHeading(new Vector2d(54,51.5));
+
+
        /* .strafeToConstantHeading(new Vector2d(44.1,56.2))
                 .strafeToConstantHeading(new Vector2d(44.1,-10))
          .turnTo(179.1)
         .lineToX(28);*/
 
         TrajectoryActionBuilder p4=p3.endTrajectory().fresh()
-                .strafeTo(new Vector2d(55.6,-62.8));
-        Action trajectoryActionCloseOut = p3.endTrajectory().fresh()
+                .turnTo(88.4)
+        .strafeToConstantHeading(new Vector2d(62.2,60.5));
+        TrajectoryActionBuilder p5=p4.endTrajectory().fresh()
+                .lineToX(67.9);
+        TrajectoryActionBuilder p6=p5.endTrajectory().fresh()
+                .lineToX(61.5);
+
+        Action trajectoryActionCloseOut = p6.endTrajectory().fresh()
                 .build();
 
         // Execute some actions before starting the trajectory
@@ -413,12 +450,29 @@ public class AutoCosAlbastru extends LinearOpMode {
                         glisiera.JosGlisi(),
                         //nou
                        p3.build(),
-                        new ParallelAction(gheara.pozitie_obliga_gheara()),
+                        gheara.pozitie_obliga_gheara(),
+                        new SleepAction(0.6),
+                                gheara.prindereGhera(),
+                                new SleepAction(0.4),
+                                gheara.ridicare_gheara_brat(),
+                                 new SleepAction(0.5),
+                                new ParallelAction(
+                                        p4.build(),
+                                        glisiera.GlisieraSusCos()
+                                ),
 
-                   //     glisiera.parcareGlisi(),
-                     //   glisiera.parcareGlisi(),
+                                p5.build(),
+                                gheara.lasareGheara(),
+                                p6.build(),
+                                glisiera.JosGlisi(),
+                                trajectoryActionCloseOut
 
-                        trajectoryActionCloseOut
+
+
+                      //glisiera.parcareGlisi(),
+                     //glisiera.parcareGlisi(),
+
+
 
 
                 )
