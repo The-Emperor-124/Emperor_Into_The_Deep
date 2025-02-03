@@ -198,7 +198,7 @@ public class AutoCosAlbastru extends LinearOpMode {
             return new Sus_Glisi_Jum();
         }
 
-        public class Sus_Glisi_cos implements Action {
+       /* public class Sus_Glisi_cos implements Action {
             private boolean isstarte=false;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
@@ -246,7 +246,34 @@ else{
             }
 
 
+        }*/
+
+        public class Sus_Glisi_cos implements Action {
+            private boolean isStarted = false;
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!isStarted) {
+                    motor_brat1.setPower(0.6);
+                    motor_brat2.setPower(0.6);
+                    motor_brat1.setTargetPosition(3753);
+                    motor_brat2.setTargetPosition(-3765);
+                    motor_brat1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motor_brat2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    isStarted = true;
+                }
+
+                // Check if the motors are still busy; if yes, keep running
+                if (motor_brat1.isBusy() || motor_brat2.isBusy()) {
+                    return true;  // Returning true means the action is still ongoing
+                } else {
+                    motor_brat1.setPower(0.11);
+                    motor_brat2.setPower(-0.11);
+                    return false;  // Returning false means the action is complete
+                }
+            }
         }
+
 
         public Action GlisieraSusCos() {
             return new Sus_Glisi_cos();
@@ -456,12 +483,25 @@ else{
                                 new SleepAction(0.4),
                                 gheara.ridicare_gheara_brat(),
                                  new SleepAction(0.5),
+
+                                /*// aici decomenteaza daca nu merge
                                 new ParallelAction(
                                         p4.build(),
                                         glisiera.GlisieraSusCos()
                                 ),
 
-                                p5.build(),
+                                 */
+
+                        new ParallelAction(
+                                p4.build(),
+                                new SequentialAction(
+                                        new SleepAction(0.2),
+                                        glisiera.GlisieraSusCos()
+                                )
+                        ),
+
+
+                        p5.build(),
                                 gheara.lasareGheara(),
                                 p6.build(),
                                 glisiera.JosGlisi(),
