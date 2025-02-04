@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.AccelConstraint;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.AngularVelConstraint;
 import com.acmerobotics.roadrunner.MinVelConstraint;
@@ -25,10 +26,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
+
 import java.util.Arrays;
 
 @Autonomous(name = "AlbastruCos", group = "Autonomous")
-public class AlbastruCos extends LinearOpMode{
+public class  AlbastruCos extends LinearOpMode{
     public class Gheara{
         private Servo servoGrDr, servoGrSta, servo_tg1, servo_tg2;
 
@@ -144,16 +147,16 @@ public class AlbastruCos extends LinearOpMode{
         }
 
         public Action glisieraSusJum() {
-            return GlisieraAction(604, -608, 0.5);
+            return GlisieraAction(604, -608, 0.6);
         }
 
         public Action glisieraSusCos() {
-            return GlisieraAction(3753, -3765, 0.6);
-        }
+            return GlisieraAction(3753, -3765, 0.7);
+        }   //0.6 inainte
 
         public Action josGlisi() {
-            return GlisieraAction(1, -1, -0.6);
-        }
+            return GlisieraAction(1, -1, -0.7);
+        }   //-0.6
 
         public Action parcareGlisi() {
             return GlisieraAction(447, -444, -0.6);
@@ -214,11 +217,12 @@ public class AlbastruCos extends LinearOpMode{
         VelConstraint p33= new MinVelConstraint(Arrays.asList(
                 new TranslationalVelConstraint(60.0),
                 new AngularVelConstraint(Math.PI / 2)
+
         ));
 
         TrajectoryActionBuilder p3=p26.endTrajectory().fresh()
                 .turnTo(-89.5)
-                .strafeToConstantHeading(new Vector2d(54,51),p33);
+                .strafeToConstantHeading(new Vector2d(54,52),p33);          // x : 54, y = 51
 
         TrajectoryActionBuilder p4=p3.endTrajectory().fresh()
                 .turnTo(88.4)
@@ -228,6 +232,33 @@ public class AlbastruCos extends LinearOpMode{
                 .lineToX(67.9);
 
         TrajectoryActionBuilder p6=p5.endTrajectory().fresh()
+                .lineToX(61.5);
+
+        TrajectoryActionBuilder p7=p6.endTrajectory().fresh()
+                .turnTo(-89.5);
+        VelConstraint p88= new MinVelConstraint(Arrays.asList(
+                new TranslationalVelConstraint(60.0),
+                new AngularVelConstraint(Math.PI / 2)
+        ));
+
+        TrajectoryActionBuilder p8 = p7.endTrajectory().fresh()
+                .strafeToConstantHeading(new Vector2d(66,52.7));      // x : 65.2, y : 52.2
+
+        VelConstraint p99= new MinVelConstraint(Arrays.asList(
+                new TranslationalVelConstraint(60.0),
+                new AngularVelConstraint(Math.PI / 2)
+        ));
+
+        TrajectoryActionBuilder p9 = p8.endTrajectory().fresh()
+                .strafeToConstantHeading(new Vector2d(60.3, 61.2), p99);
+
+        TrajectoryActionBuilder p10 = p9.endTrajectory().fresh()
+                .turnTo(88.4);
+
+        TrajectoryActionBuilder p101 = p10.endTrajectory().fresh()
+                .lineToX(66.7);
+
+        TrajectoryActionBuilder p102 = p10.endTrajectory().fresh()
                 .lineToX(61.5);
 
         // Execute some actions before starting the trajectory
@@ -250,12 +281,60 @@ public class AlbastruCos extends LinearOpMode{
         Action act4 = p4.build();
         Action act5 = p5.build();
         Action act6 = p6.build();
+        Action act7= p7.build();
+        Action act8= p8.build();
+        Action act9= p9.build();
+        Action act10 = p10.build();
+        Action act101 = p101.build();
+        Action act102 = p102.build();
 
         // aici se vor executa toate actiunile
 
         Actions.runBlocking(
                 // aici vor rula mai multe sequence action
             new SequentialAction(
+                    new ParallelAction(
+                            act1,
+                            glisiera.glisieraSusCos()
+                    ),
+                    act2,
+                    act25,
+                    gheara.lasareGheara(),
+                    act26,
+                    new ParallelAction(
+                            act3,
+                            glisiera.josGlisi()
+                    ),
+                    gheara.pozitieObligaGheara(),
+                    new SleepAction(0.4),
+                    gheara.prindereGheara(),
+                    new SleepAction(0.3),
+                    gheara.ridicareGhearaBrat(),
+                    new ParallelAction(
+                            act4,
+                            glisiera.glisieraSusCos()
+                    ),
+                    act5,
+                    gheara.lasareGheara(),
+                    act6,
+                    act7,
+                    new ParallelAction(
+                            act8,
+                            glisiera.josGlisi()
+                    ),
+                    gheara.pozitieObligaGheara(),
+                    new SleepAction(0.4),
+                    gheara.prindereGheara(),
+                    new SleepAction(0.3),
+                    gheara.ridicareGhearaBrat(),
+                    new ParallelAction(
+                            act9,
+                            glisiera.glisieraSusCos()
+                    ),
+                    act10,
+                    act101,
+                    gheara.lasareGheara(),
+                    act102
 
             )
         );

@@ -324,6 +324,7 @@ public class AutoCosRosu extends LinearOpMode {
                  .turnTo(179.8);//90.69
         TrajectoryActionBuilder p8=p7.endTrajectory().fresh()
                 .lineToX(-62.4);
+
         Action trajectoryActionCloseOut = p8.endTrajectory().fresh()
                 .build();
 
