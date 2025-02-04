@@ -151,11 +151,11 @@ public class  AlbastruCos extends LinearOpMode{
         }
 
         public Action glisieraSusCos() {
-            return GlisieraAction(3753, -3765, 0.7);
+            return GlisieraAction(3753, -3765, 0.8);
         }   //0.6 inainte
 
         public Action josGlisi() {
-            return GlisieraAction(1, -1, -0.7);
+            return GlisieraAction(1, -1, -0.9);
         }   //-0.6
 
         public Action parcareGlisi() {
@@ -215,14 +215,14 @@ public class  AlbastruCos extends LinearOpMode{
 
         // noul vel constraint
         VelConstraint p33= new MinVelConstraint(Arrays.asList(
-                new TranslationalVelConstraint(60.0),
+                new TranslationalVelConstraint(70.0),
                 new AngularVelConstraint(Math.PI / 2)
 
         ));
 
         TrajectoryActionBuilder p3=p26.endTrajectory().fresh()
                 .turnTo(-89.5)
-                .strafeToConstantHeading(new Vector2d(54,52),p33);          // x : 54, y = 51
+                .strafeToConstantHeading(new Vector2d(54,53),p33);          // x : 54, y = 51
 
         TrajectoryActionBuilder p4=p3.endTrajectory().fresh()
                 .turnTo(88.4)
@@ -237,7 +237,7 @@ public class  AlbastruCos extends LinearOpMode{
         TrajectoryActionBuilder p7=p6.endTrajectory().fresh()
                 .turnTo(-89.5);
         VelConstraint p88= new MinVelConstraint(Arrays.asList(
-                new TranslationalVelConstraint(60.0),
+                new TranslationalVelConstraint(70.0),
                 new AngularVelConstraint(Math.PI / 2)
         ));
 
@@ -245,7 +245,7 @@ public class  AlbastruCos extends LinearOpMode{
                 .strafeToConstantHeading(new Vector2d(66,52.7));      // x : 65.2, y : 52.2
 
         VelConstraint p99= new MinVelConstraint(Arrays.asList(
-                new TranslationalVelConstraint(60.0),
+                new TranslationalVelConstraint(70.0),
                 new AngularVelConstraint(Math.PI / 2)
         ));
 
@@ -256,10 +256,17 @@ public class  AlbastruCos extends LinearOpMode{
                 .turnTo(88.4);
 
         TrajectoryActionBuilder p101 = p10.endTrajectory().fresh()
-                .lineToX(66.7);
+                .lineToX(67);    // 66.7
 
         TrajectoryActionBuilder p102 = p10.endTrajectory().fresh()
                 .lineToX(61.5);
+
+        TrajectoryActionBuilder prob=p102.endTrajectory().fresh()
+                .strafeToConstantHeading(new Vector2d(64.2, 52.9), p99) // 66 53
+                .turnTo(-44.75);
+        //                .splineToConstantHeading(
+        //                        new Vector2d(60,44),Math.toRadians(0) // 63 cu 45 mergeau bine de pe initial pose //65, 46.5
+        //                )
 
         // Execute some actions before starting the trajectory
         Actions.runBlocking(gheara.ridicareGhearaBrat());
@@ -287,13 +294,14 @@ public class  AlbastruCos extends LinearOpMode{
         Action act10 = p10.build();
         Action act101 = p101.build();
         Action act102 = p102.build();
+        Action act11=prob.build();
 
         // aici se vor executa toate actiunile
 
         Actions.runBlocking(
                 // aici vor rula mai multe sequence action
             new SequentialAction(
-                    new ParallelAction(
+                   new ParallelAction(
                             act1,
                             glisiera.glisieraSusCos()
                     ),
@@ -334,7 +342,13 @@ public class  AlbastruCos extends LinearOpMode{
                     act10,
                     act101,
                     gheara.lasareGheara(),
-                    act102
+                    new SleepAction(0.1),
+                    act102,
+                    new SleepAction(0.1),
+                    new ParallelAction(
+                            act11,
+                            glisiera.josGlisi()
+                    )
 
             )
         );

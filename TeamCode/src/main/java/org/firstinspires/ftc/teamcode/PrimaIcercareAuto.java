@@ -225,14 +225,14 @@ public class PrimaIcercareAuto extends LinearOpMode {
         Actions.runBlocking(
                 new SequentialAction(
                         // Perform the trajectory
-                        glisiera.GlisieraSusJum(),
+                        /*glisiera.GlisieraSusJum(),
                         p1.build(),
 
                                 new ParallelAction(
                                         gheara.pozitie_obliga(),
                                         glisiera.GlisieraSus()
 
-                                )
+                                )*/
                         // new SleepAction(0.1)
 
                 )

@@ -28,11 +28,19 @@ public class MeepMeepTesting {
                         .lineToX(66.7)
                         .lineToX(61.5)
                                 .turnTo(-89.5)
-                                .strafeToConstantHeading(new Vector2d(54,58))
+                                .strafeToConstantHeading(new Vector2d(54,53))
                                 .turnTo(88.4)
-                                .strafeToConstantHeading(new Vector2d(61.3,62))
+                                .strafeToConstantHeading(new Vector2d(62.2,60.5))
+                .lineToX(67.9)
+                .lineToX(61.5)
                                 .turnTo(-89.5)
-                                .strafeToConstantHeading(new Vector2d(64.3,54.3))
+                .strafeToConstantHeading(new Vector2d(66,52.7))
+                .strafeToConstantHeading(new Vector2d(60.3, 61.2))
+                .turnTo(88.4)
+                .lineToX(67)
+                .lineToX(61.5)
+                                .strafeToConstantHeading(new Vector2d(65,53))
+
 
 
                                /* .turnTo(-89.5)
