@@ -87,7 +87,8 @@ public class RosuBara extends LinearOpMode {
         
         TrajectoryActionBuilder scoreSample1 = prepareToTakeSample1.endTrajectory().fresh()
                         .turnTo(1.65)
-                        .strafeToConstantHeading(new Vector2d(0, -29), speedFast, accFast);
+                        .strafeToConstantHeading(new Vector2d(10, -50), speedSlow, accSlow)
+                        .strafeToConstantHeading(new Vector2d(2, -41), speedFast, accFast);
 
         Actions.runBlocking(gheara.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
@@ -137,11 +138,11 @@ public class RosuBara extends LinearOpMode {
                         actPrepareSample2,
                         actPrepareToTakeSample1,
                         
-                        new SleepAction(0.2),
-                        gheara.prindeSampleBara(),
                         new SleepAction(0.4),
+                        gheara.prindeSampleBara(),
+                        new SleepAction(0.5),
                         gheara.prindereGheara(),
-                        new SleepAction(0.3),
+                        new SleepAction(0.4),
                         new ParallelAction(
                                 gheara.ridicareGhearaBrat(),
                                 actScoreSample1,

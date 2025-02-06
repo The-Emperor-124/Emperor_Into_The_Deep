@@ -51,7 +51,7 @@ public class Glisiera {
     }
 
     public Action glisieraSusJumate(){
-        return GlisieraAction(1500, -1500, 1.0);
+        return GlisieraAction(1182, -1207, 1.0);
     }
 
     public Action glisieraOutake(){

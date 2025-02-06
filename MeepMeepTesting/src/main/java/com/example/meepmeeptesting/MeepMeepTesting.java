@@ -33,6 +33,8 @@ public class MeepMeepTesting {
                         .strafeToConstantHeading(new Vector2d(57, -57))
                         .turnTo(80.1)
                         .turnTo(1.65)
+                        .strafeToConstantHeading(new Vector2d(10, -50))
+                        .strafeToConstantHeading(new Vector2d(0, -29))
 
 
                 .build());
