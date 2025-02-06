@@ -73,4 +73,17 @@ public class Gheara {
     public Action pozitieObligaGheara(){
         return new PozitieObligaGheara();
     }
+
+    public class PrindeSampleBara implements Action{
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet){
+            servo_tg1.setPosition(0.81);
+            servo_tg2.setPosition(0.81);
+            return false;
+        }
+    }
+
+    public Action prindeSampleBara(){
+        return new PrindeSampleBara();
+    }
 }

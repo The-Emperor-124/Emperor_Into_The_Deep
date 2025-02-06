@@ -21,12 +21,46 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(17.8, 70.1, -89.5))
-                                .strafeToConstantHeading(new Vector2d(63,45))
-                                .turnTo(88.4)
-                                .strafeToConstantHeading(new Vector2d(67.5,66))
-                                .lineToX(61.5)
-                                .strafeToConstantHeading(new Vector2d(19.9,8.6))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(23.6, -70.3, 1.56))
+                        .strafeToConstantHeading(new Vector2d(0, -25))
+                        .strafeToConstantHeading(new Vector2d(20, -60))
+                        .strafeToConstantHeading(new Vector2d(51, -13))
+                        .strafeToConstantHeading(new Vector2d(57, -13))
+                        .strafeToConstantHeading(new Vector2d(57, -57))
+                        .strafeToConstantHeading(new Vector2d(57, -13))
+                        .strafeToConstantHeading(new Vector2d(67, -13))
+                        .strafeToConstantHeading(new Vector2d(67, -57))
+                        .strafeToConstantHeading(new Vector2d(57, -57))
+                        .turnTo(80.1)
+                        .turnTo(1.65)
+
+
+                .build());
+
+    Image img=null;
+    try{img= ImageIO.read(new File("C:/Users/The Emperor RO124/Documents/field2.jpeg"));}
+    //try{img= ImageIO.read(new File("C:/Users/The Emperor RO124Downloads/field_2024.jpeg"));}
+    catch(IOException e){}
+
+    //    meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)
+        meepMeep.setBackground(img)
+                .setDarkMode(true)
+                .setBackgroundAlpha(0.95f)
+                .addEntity(myBot)
+                .start();
+    }
+}
+
+// aici e ce era in mybot
+
+
+/*
+
+//                                .strafeToConstantHeading(new Vector2d(63,45))
+//                                .turnTo(88.4)
+//                                .strafeToConstantHeading(new Vector2d(67.5,66))
+//                                .lineToX(61.5)
+//                                .strafeToConstantHeading(new Vector2d(19.9,8.6))
                 //        .strafeToConstantHeading(new Vector2d(17,68))//pt albasru -20 66 80
               //  .strafeTo(new Vector2d(65.7,62)) // pt albastru -10 27.7, math....0
                     //    .strafeToConstantHeading(new Vector2d(-68.9,69.1))//pt albastru -68.9 69.1
@@ -58,11 +92,11 @@ public class MeepMeepTesting {
 
 
 
-                                //.strafeTo(new Vector2d(-23.8,-69.4))
-                               // .strafeTo(new Vector2d(55.6,-62.9))
-                       // .strafeTo(new Vector2d(67.5,-67.3))
-                        // .splineTo(new Vector2d(-16.0,-10.8),Math.toRadians(0))
-                       // .strafeTo(new Vector2d(67.5,-67.3))
+//.strafeTo(new Vector2d(-23.8,-69.4))
+// .strafeTo(new Vector2d(55.6,-62.9))
+// .strafeTo(new Vector2d(67.5,-67.3))
+// .splineTo(new Vector2d(-16.0,-10.8),Math.toRadians(0))
+// .strafeTo(new Vector2d(67.5,-67.3))
                 /* pt rosu continuare
                 .turnTo(89.5)
                                 .strafeTo(new Vector2d(-47.2,-37.4))
@@ -71,18 +105,4 @@ public class MeepMeepTesting {
                                 .lineToX(-62.4)
                  */
 
-                .build());
 
-    Image img=null;
-    try{img= ImageIO.read(new File("C:/Users/The Emperor RO124/Documents/field2.jpeg"));}
-    //try{img= ImageIO.read(new File("C:/Users/The Emperor RO124Downloads/field_2024.jpeg"));}
-    catch(IOException e){}
-
-    //    meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)
-        meepMeep.setBackground(img)
-                .setDarkMode(true)
-                .setBackgroundAlpha(0.95f)
-                .addEntity(myBot)
-                .start();
-    }
-}

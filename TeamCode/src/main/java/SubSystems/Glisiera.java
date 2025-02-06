@@ -51,11 +51,11 @@ public class Glisiera {
     }
 
     public Action glisieraSusJumate(){
-        return GlisieraAction(1500, -1500, 0.6);
+        return GlisieraAction(1500, -1500, 1.0);
     }
 
     public Action glisieraOutake(){
-        return GlisieraAction(604, -608, 0.6);
+        return GlisieraAction(400, -400, 1.0);
     }
     public Action glisieraJos(){
         return GlisieraAction(1, -1, 0.8);
