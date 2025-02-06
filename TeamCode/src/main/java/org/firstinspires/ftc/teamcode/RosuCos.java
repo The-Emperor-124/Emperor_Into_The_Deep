@@ -31,8 +31,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 
 import java.util.Arrays;
 
-@Autonomous(name = "AlbastruCos", group = "Autonomous")
-public class  AlbastruCos extends LinearOpMode{
+@Autonomous(name = "RosuCos", group = "Autonomous")
+public class  RosuCos extends LinearOpMode{
     public class Gheara{
         private Servo servoGrDr, servoGrSta, servo_tg1, servo_tg2;
 
@@ -74,21 +74,12 @@ public class  AlbastruCos extends LinearOpMode{
         public Action lasareGheara() {
             return new LasareGheara();
         }
-        public class caramidaperete implements Action{
-            @Override
-            public boolean run(@NonNull TelemetryPacket packet){
-                servoGrDr.setPosition(0.7);
-                servoGrSta.setPosition(0.2);
-                return false;
-            }
-        }
-        public Action peretecaramida(){return new caramidaperete();}
 
         public class RidicareGhearaBrat implements Action {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                servo_tg1.setPosition(0.52);
-                servo_tg2.setPosition(0.52);
+                servo_tg1.setPosition(0.55);
+                servo_tg2.setPosition(0.55);
                 return false;
             }
         }
@@ -206,7 +197,7 @@ public class  AlbastruCos extends LinearOpMode{
         Glisiera glisiera = new Glisiera(hardwareMap);
 
         // Initialize the robot's position (for MecanumDrive)
-        Pose2d pose = new Pose2d(17.8, 70.1, -89.5);
+        Pose2d pose = new Pose2d(-17.8, -70.1, 89.5);
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
         AccelConstraint accslow=new ProfileAccelConstraint(-45,90);
         AccelConstraint accfast=new ProfileAccelConstraint(-100,140);
@@ -219,22 +210,22 @@ public class  AlbastruCos extends LinearOpMode{
 
         // prima data cand ajunge la cos
         TrajectoryActionBuilder p1 = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(15,68))
-                .strafeToConstantHeading(new Vector2d(67.5, 63.5), p11, accslow) ;  // era 66 cand lovea 60.3, 63.2
+                .strafeToConstantHeading(new Vector2d(-15,-68))
+                .strafeToConstantHeading(new Vector2d(-67.5, -63.5), p11, accslow) ;  // era 66 cand lovea 60.3, 63.2
 
 
 
         // rotire cos 1
         TrajectoryActionBuilder p2=p1.endTrajectory().fresh()
-                .turnTo(358.8);
+                .turnTo(179.7);//179.7   358.8
 
         TrajectoryActionBuilder p25=p2.endTrajectory().fresh()
-                .lineToX(67.5);     // 67, 66.7
+                .lineToX(-67.5);     // 67, 66.7
 
 
         // da inapoi de la cos
         TrajectoryActionBuilder p26=p2.endTrajectory().fresh()
-                .lineToX(61.5);
+                .lineToX(-61.5);
 
         // noul vel constraint
         VelConstraint p33= new MinVelConstraint(Arrays.asList(
@@ -246,19 +237,19 @@ public class  AlbastruCos extends LinearOpMode{
         // merge sa ia primul sample -> il lua bine
         TrajectoryActionBuilder p3=p26.endTrajectory().fresh()
                 .turnTo(-89.5)
-                .strafeToConstantHeading(new Vector2d(55,53),p33,accfast);      // x : 54    // x : 54, y = 51
+                .strafeToConstantHeading(new Vector2d(-55,-53),p33,accfast);      // x : 54    // x : 54, y = 51
 
         // aici se intoarce si merge sa puna primul sample de pe jos(2)
         TrajectoryActionBuilder p4=p3.endTrajectory().fresh()
                 .turnTo(88.4)
-                .strafeToConstantHeading(new Vector2d(68,68));// x: 62.2//60.5 y
+                .strafeToConstantHeading(new Vector2d(-68,-68));// x: 62.2//60.5 y
 
         TrajectoryActionBuilder p5=p4.endTrajectory().fresh()
-                .lineToX(67.9);
+                .lineToX(-67.9);
 
         // asta da inapoi
         TrajectoryActionBuilder p6=p5.endTrajectory().fresh()
-                .lineToX(61.5);
+                .lineToX(-61.5);
 
         // se roteste
         TrajectoryActionBuilder p7=p6.endTrajectory().fresh()
@@ -272,7 +263,7 @@ public class  AlbastruCos extends LinearOpMode{
 
         // asta e al doilea sample
         TrajectoryActionBuilder p8 = p7.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(66,53));      // x : 65.2, y : 52.2
+                .strafeToConstantHeading(new Vector2d(-66,-53));      // x : 65.2, y : 52.2
 
         VelConstraint p99= new MinVelConstraint(Arrays.asList(
                 new TranslationalVelConstraint(140.0),
@@ -282,41 +273,37 @@ public class  AlbastruCos extends LinearOpMode{
         // merge la cos sa puna al doilea sample
         TrajectoryActionBuilder p9 = p8.endTrajectory().fresh()
                 .turnTo(88.4)
-                .strafeToConstantHeading(new Vector2d(67.5, 66), p99,accfast);  // y : 61.2  //x : 60.3
+                .strafeToConstantHeading(new Vector2d(-67.5, -66), p99,accfast);  // y : 61.2  //x : 60.3
 
         TrajectoryActionBuilder p10 = p9.endTrajectory().fresh()
                 .turnTo(88.4);
 
         TrajectoryActionBuilder p101 = p10.endTrajectory().fresh()
-                .lineToX(67);    // 66.7
+                .lineToX(-67);    // 66.7
 
         TrajectoryActionBuilder p102 = p10.endTrajectory().fresh()
-                .lineToX(61.5);
+                .lineToX(-61.5);
 
         TrajectoryActionBuilder prob=p102.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(63, 46.4), p99,accfast) // 43 / x: 62 // 66 53  // 63 45
+                .strafeToConstantHeading(new Vector2d(-63, -46.4), p99,accfast) // 43 / x: 62 // 66 53  // 63 45
                 .turnTo(-44.75);
         //                .splineToConstantHeading(
         //                        new Vector2d(60,44),Math.toRadians(0) // 63 cu 45 mergeau bine de pe initial pose //65, 46.5
         //                )
 
-        TrajectoryActionBuilder prev12 = prob.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(50, 42), p99, accfast);   //y : 43
-
-        TrajectoryActionBuilder p12 = prev12.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(67.5, 66), p99,accfast)
-                .turnTo(88.4); // 88.4
+        TrajectoryActionBuilder p12 = prob.endTrajectory().fresh()
+                .turnTo(88.4)
+                .strafeToConstantHeading(new Vector2d(-67.5, -66), p99,accfast);
 
         AccelConstraint accpark=new ProfileAccelConstraint(-90,190);
 
         TrajectoryActionBuilder p13 = p12.endTrajectory().fresh()
-                //.lineToX(60.5); //61.5
-                .strafeToConstantHeading(new Vector2d(57,66), p99, accpark);
+                .lineToX(61.5)
+                .strafeToConstantHeading(new Vector2d(-15,-8.6), p99, accpark);
 
         // Execute some actions before starting the trajectory
         Actions.runBlocking(gheara.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
-        //Actions.runBlocking(gheara.peretecaramida());
 
         // Wait for the start signal
         waitForStart();
@@ -346,81 +333,77 @@ public class  AlbastruCos extends LinearOpMode{
         Action act12 = p12.build();
         Action act13 = p13.build();
 
-        Action actprev12 = prev12.build();
-
         // aici se vor executa toate actiunile
 
         Actions.runBlocking(
                 // aici vor rula mai multe sequence action
-            new SequentialAction(
-                   new ParallelAction(
-                            act1,
-                            glisiera.glisieraSusCos12()
-                           //act25
-                    ),
-                    act2,
-                  // act25,
+                new SequentialAction(
+                        new ParallelAction(
+                                act1,
+                                glisiera.glisieraSusCos12()
+                                //act25
+                        ),
+                        act2,
+                        // act25,
 
-                    gheara.lasareGheara(),
-                    act26,
-                    new ParallelAction(
-                            act3,
-                            glisiera.josGlisi()
-                    ),
-                    gheara.pozitieObligaGheara(),
-                    new SleepAction(0.4),
-                    gheara.prindereGheara(),
-                    new SleepAction(0.3),
-                    gheara.ridicareGhearaBrat(),
+                        gheara.lasareGheara(),
+                        act26,
+                        new ParallelAction(
+                                act3,
+                                glisiera.josGlisi()
+                        ),
+                        gheara.pozitieObligaGheara(),
+                        new SleepAction(0.4),
+                        gheara.prindereGheara(),
+                        new SleepAction(0.3),
+                        gheara.ridicareGhearaBrat(),
 
-                    new ParallelAction(
-                            act4,
-                            glisiera.glisieraSusCos12()
-                    ),
-                    //act5,
-                    //new SleepAction(0.1), //la 0.2 era delay prea mare
-                    gheara.lasareGheara(),
+                        new ParallelAction(
+                                act4,
+                                glisiera.glisieraSusCos12()
+                        ),
+                        //act5,
+                        //new SleepAction(0.1), //la 0.2 era delay prea mare
+                        gheara.lasareGheara(),
 //                    new SleepAction(0.1),
-                    act6,
-                    act7,
-                    new ParallelAction(
-                            act8,
-                            glisiera.josGlisi()
-                    ),
+                        act6,
+                        act7,
+                        new ParallelAction(
+                                act8,
+                                glisiera.josGlisi()
+                        ),
 
-                    gheara.pozitieObligaGheara(),
-                    new SleepAction(0.4),
-                    gheara.prindereGheara(),
-                    new SleepAction(0.3),
-                    gheara.ridicareGhearaBrat(),
-                    new ParallelAction(
-                            act9,
-                            glisiera.glisieraSusCos()
-                    ),
-                   // act10,
-                    //act101,
-                    gheara.peretecaramida(),
-                    act102,
-                    //new SleepAction(0.1),
-                    new ParallelAction(
-                            act11,
-                            glisiera.josGlisi()
-                    ),
-                    gheara.pozitieObligaGheara(),
-                    new SleepAction(0.5),
-                    gheara.prindereGheara(),
-                    new SleepAction(0.3),
-//                    gheara.ridicareGhearaBrat(),
-                    actprev12,
-                    new ParallelAction(
-                            act12,
-                            glisiera.glisieraSusCos12(),
-                            gheara.ridicareGhearaBrat()
-                    ),
-                    gheara.lasareGheara(),
-                    act13
+                        gheara.pozitieObligaGheara(),
+                        new SleepAction(0.4),
+                        gheara.prindereGheara(),
+                        new SleepAction(0.3),
+                        gheara.ridicareGhearaBrat(),
+                        new ParallelAction(
+                                act9,
+                                glisiera.glisieraSusCos()
+                        ),
+                        // act10,
+                        //act101,
+                        gheara.lasareGheara(),
+                        act102,
+                        //new SleepAction(0.1),
+                        new ParallelAction(
+                                act11,
+                                glisiera.josGlisi()
+                        ),
+                        gheara.pozitieObligaGheara(),
+                        new SleepAction(0.5),
+                        gheara.prindereGheara(),
+                        new SleepAction(0.3),
+                        gheara.ridicareGhearaBrat(),
+                        new ParallelAction(
+                                act12,
+                                glisiera.glisieraSusCos12()
+                        ),
+                        gheara.lasareGheara(),
+                        act13
 
-            )
+                )
         );
     }
 }

@@ -21,10 +21,16 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(17.8, 70.1, -89.5)) //pt albasru -20 66 80
-                .strafeTo(new Vector2d(60.3,61.2)) // pt albastru -10 27.7, math....0
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(17.8, 70.1, -89.5))
+                                .strafeToConstantHeading(new Vector2d(63,45))
+                                .turnTo(88.4)
+                                .strafeToConstantHeading(new Vector2d(67.5,66))
+                                .lineToX(61.5)
+                                .strafeToConstantHeading(new Vector2d(19.9,8.6))
+                //        .strafeToConstantHeading(new Vector2d(17,68))//pt albasru -20 66 80
+              //  .strafeTo(new Vector2d(65.7,62)) // pt albastru -10 27.7, math....0
                     //    .strafeToConstantHeading(new Vector2d(-68.9,69.1))//pt albastru -68.9 69.1
-                        .turnTo(358.8)//180
+                       /* .turnTo(358.8)//180
                         .lineToX(66.7)
                         .lineToX(61.5)
                                 .turnTo(-89.5)
@@ -69,6 +75,7 @@ public class MeepMeepTesting {
 
     Image img=null;
     try{img= ImageIO.read(new File("C:/Users/The Emperor RO124/Documents/field2.jpeg"));}
+    //try{img= ImageIO.read(new File("C:/Users/The Emperor RO124Downloads/field_2024.jpeg"));}
     catch(IOException e){}
 
     //    meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_OFFICIAL)
