@@ -1,17 +1,17 @@
-package org.firstinspires.ftc.teamcode.Mecanum;
+//CARE UMBL ICI MASAI CURVA BAGAMIAS PULA IN EL
+package org.firstinspires.ftc.teamcode.Reziduu;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@TeleOp(name="Mecanum_AnalogSticks2025_Encodere", group="Linear Opmode")
-//@Disabled
-public class Mecanum_AnalogSticks2025_Encodere extends LinearOpMode {
+@TeleOp(name="A_nu_se_rula_MR_Messi", group="Linear Opmode")
+@Disabled
+public class A_nu_se_rula_MR_Messi extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -62,7 +62,7 @@ public class Mecanum_AnalogSticks2025_Encodere extends LinearOpMode {
         servo_tg2.setPosition(0.5);// era 0.01
         servo_tg1.setPosition(0.5);// era 0.01
         servoGrDr.setPosition(0.95);//-0.3 si 0
-        servoGrSta.setPosition(-1); //era 0.33 dupa 0.97
+        servoGrSta.setPosition(-0.3); //era 0
         motor_brat1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor_brat2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -117,13 +117,13 @@ public class Mecanum_AnalogSticks2025_Encodere extends LinearOpMode {
             if(gamepad2.right_bumper)
             {
                 //motor_brat1.setPower(0);//motor_brat2.setPower(0);
-                servo_tg1.setPosition(0.69);
-                servo_tg2.setPosition(0.69);
+                servo_tg1.setPosition(0.68);
+                servo_tg2.setPosition(0.68);
             }
             if(gamepad2.left_bumper)
             {
-                servo_tg1.setPosition(0.83);
-                servo_tg2.setPosition(0.83);
+                servo_tg1.setPosition(0.81);
+                servo_tg2.setPosition(0.81);
             }
             if(gamepad2.dpad_up)
             {
@@ -152,8 +152,8 @@ public class Mecanum_AnalogSticks2025_Encodere extends LinearOpMode {
             }
             if(gamepad2.a) //prindere
             {
-                servoGrSta.setPosition(-0.97);//-0.97
-                servoGrDr.setPosition(0.96);//0.97   dupa 0.96
+                servoGrSta.setPosition(-0.89);
+                servoGrDr.setPosition(0.97);
             }
             if (gamepad2.left_trigger>0.0)
             {   motor_brat1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -188,7 +188,7 @@ public class Mecanum_AnalogSticks2025_Encodere extends LinearOpMode {
 
             }
             else
-            {   //if(posi1<1.0 && posi2<1.0) { motor_brat1.setPower(0); motor_brat2.setPower(0);}
+            {   if(posi1<1.0 && posi2<1.0) { motor_brat1.setPower(0); motor_brat2.setPower(0);}
                 motor_brat1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motor_brat2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motor_brat1.setTargetPosition((int)(posi1));

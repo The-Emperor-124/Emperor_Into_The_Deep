@@ -27,14 +27,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Reziduu;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -57,11 +56,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 @Config
-@Autonomous(name="RosuJos", group="Autonomous")
+@Autonomous(name="ParcareDreaptaDeSus", group="Autonomous")
 @Disabled
 
-
-public class RosuJos extends LinearOpMode {
+public class AlbastruSus extends LinearOpMode {
 
     /* Declare OpMode members. */
     DcMotor leftRear, leftFront, rightRear, rightFront, motor_brat1,motor_brat2;;
@@ -80,19 +78,7 @@ public class RosuJos extends LinearOpMode {
         rightFront.setPower(FORWARD_SPEED);
         rightRear.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.2)) {
-            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-    }
-    public void fatamic()
-    {
-        leftRear.setPower(FORWARD_SPEED);
-        leftFront.setPower(FORWARD_SPEED);
-        rightFront.setPower(FORWARD_SPEED);
-        rightRear.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.7)) {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -106,7 +92,7 @@ public class RosuJos extends LinearOpMode {
         rightRear.setPower(-TURN_SPEED);
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.1)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.2)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -116,20 +102,20 @@ public class RosuJos extends LinearOpMode {
         servoGrSta.setPosition(0.24);
         servoGrDr.setPosition(0.94);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.24)) {
             telemetry.addData("Path", "Leg 3: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
     }
     public void strafe_right()
     {
-        leftRear.setPower(-TURN_SPEED);
+        leftRear.setPower(-0.5);
         leftFront.setPower(TURN_SPEED);
         rightFront.setPower(-TURN_SPEED);
-        rightRear.setPower(TURN_SPEED);
+        rightRear.setPower(0.6);
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() <1.2)) {
+        while (opModeIsActive() && (runtime.seconds() <1.6)) {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -167,7 +153,7 @@ public class RosuJos extends LinearOpMode {
         rightFront.setPower(FORWARD_SPEED);
         rightRear.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.7)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -186,7 +172,7 @@ public class RosuJos extends LinearOpMode {
     }
     public void pozitie()
     {
-        servo_tg1.setPosition(0.5);
+        servo_tg1.setPosition(0.5); //era 0.12 la ambele
         servo_tg2.setPosition(0.5);
     }
 
@@ -215,7 +201,7 @@ public class RosuJos extends LinearOpMode {
         rightRear.setDirection(DcMotor.Direction.FORWARD);
         servo_tg2.setDirection(Servo.Direction.REVERSE);
         servoGrSta.setDirection(Servo.Direction.REVERSE);
-        servo_tg2.setPosition(0.5);
+        servo_tg2.setPosition(0.5); // era 0.55
         servo_tg1.setPosition(0.5);
         servoGrDr.setPosition(0);//0.85
         servoGrSta.setPosition(0);//-0.89
@@ -231,9 +217,10 @@ public class RosuJos extends LinearOpMode {
         // pozitie();
       //  fata();
        // strafe_left();
-        //fata();fata_mic();
+        //fata(); fata_mic(); fata_mic();
         strafe_right();
-        sleep(50);
+        pozitie();
+        //sleep(50);
         //ridica_glisiera();
 
         //pune_caramida();
