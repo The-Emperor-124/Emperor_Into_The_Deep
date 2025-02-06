@@ -1,6 +1,7 @@
 //CARE UMBL ICI MASAI CURVA BAGAMIAS PULA IN EL
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -11,7 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @TeleOp(name="A_nu_se_rula_MR_Messi", group="Linear Opmode")
-//@Disabled
+@Disabled
 public class A_nu_se_rula_MR_Messi extends LinearOpMode {
 
     // Declare OpMode members.

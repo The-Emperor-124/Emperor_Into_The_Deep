@@ -18,6 +18,7 @@ import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.VelConstraint;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.acmerobotics.roadrunner.Vector2d;
 
@@ -28,6 +29,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import java.util.Arrays;
 
 @Autonomous(name="AutoCosAlbastru", group = "Autonomous")
+@Disabled
 public class AutoCosAlbastru extends LinearOpMode {
 
     public class Gheara {

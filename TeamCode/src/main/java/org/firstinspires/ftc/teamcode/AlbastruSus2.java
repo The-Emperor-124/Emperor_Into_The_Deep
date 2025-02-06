@@ -58,7 +58,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 @Config
 @Autonomous(name="AlbastruSus2", group="Autonomous")
-
+@Disabled
 
 public class AlbastruSus2 extends LinearOpMode {
 

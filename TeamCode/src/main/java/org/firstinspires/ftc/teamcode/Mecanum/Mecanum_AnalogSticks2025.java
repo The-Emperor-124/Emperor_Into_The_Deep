@@ -141,33 +141,33 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             if(gamepad2.right_bumper)
             {
                 //motor_brat1.setPower(0);//motor_brat2.setPower(0);
-                servo_tg1.setPosition(0.72); //a fost 0.69 la ambele
-                servo_tg2.setPosition(0.72);
+                servo_tg1.setPosition(0.69);
+                servo_tg2.setPosition(0.69);
             }
             if(gamepad2.left_bumper)
             {
-                servo_tg1.setPosition(0.84); //era 0.83, merge bine 0.85
-                servo_tg2.setPosition(0.84);
+                servo_tg1.setPosition(0.81); //era 0.83, merge bine 0.85
+                servo_tg2.setPosition(0.81);
             }
             if(gamepad2.dpad_up)
             {
-                servo_tg1.setPosition(0.55);
-                servo_tg2.setPosition(0.55);
+                servo_tg1.setPosition(0.52); //era 0.55
+                servo_tg2.setPosition(0.52);
             }
             if(gamepad2.dpad_left)
             {
-                servo_tg2.setPosition(0.70); //era 0.65
-                servo_tg1.setPosition(0.70);
+                servo_tg2.setPosition(0.67); //era 0.65
+                servo_tg1.setPosition(0.67);
             }
             if(gamepad2.dpad_right)
             {
-                servo_tg1.setPosition(0.81); //era 0.78 la ambele, am schimbat un 0.81 (semibun)
-                servo_tg2.setPosition(0.81);
+                servo_tg1.setPosition(0.79); //era 0.78 la ambele, am schimbat un 0.81 (semibun)
+                servo_tg2.setPosition(0.79);
             }
             if(gamepad2.dpad_down)
             {
-                servo_tg1.setPosition(0.85); //0.86 e ok, incerc 0.85
-                servo_tg2.setPosition(0.85);
+                servo_tg1.setPosition(0.83); //0.86 e ok, incerc 0.85
+                servo_tg2.setPosition(0.83);
             }
             if(gamepad2.y)
             {

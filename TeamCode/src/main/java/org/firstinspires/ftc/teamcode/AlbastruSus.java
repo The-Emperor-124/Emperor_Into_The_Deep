@@ -58,7 +58,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 @Config
 @Autonomous(name="ParcareDreaptaDeSus", group="Autonomous")
-
+@Disabled
 
 public class AlbastruSus extends LinearOpMode {
 
