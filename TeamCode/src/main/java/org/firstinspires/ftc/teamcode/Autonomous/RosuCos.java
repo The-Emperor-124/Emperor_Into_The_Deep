@@ -36,5 +36,30 @@ public class RosuCos extends LinearOpMode {
         Glisiera glisiera = new Glisiera(hardwareMap);
 
         Pose2d pose = new Pose2d(-17.8, -70.1, 1.56);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
+
+        AccelConstraint accFast=new ProfileAccelConstraint(-80.0,80.0);
+        AccelConstraint accSlow = new ProfileAccelConstraint(-30.0, 30.0);
+
+        VelConstraint speedFast= new MinVelConstraint(Arrays.asList(
+                new TranslationalVelConstraint(80.0),
+                new AngularVelConstraint(Math.PI / 2)
+
+        ));
+
+        VelConstraint speedSlow= new MinVelConstraint(Arrays.asList(
+                new TranslationalVelConstraint(45.0),
+                new AngularVelConstraint(Math.PI / 2)
+
+        ));
+
+        //Actions.runBlocking(brat.prindeSampleDePePerete());
+
+        waitForStart();
+
+
+        if(isStopRequested()){
+            return;
+        }
     }
 }

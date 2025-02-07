@@ -19,6 +19,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 
 import java.util.Arrays;
 
+import org.firstinspires.ftc.teamcode.Subsystems.BratGheara;
 import org.firstinspires.ftc.teamcode.others.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Subsystems.Gheara;
 import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
@@ -31,12 +32,13 @@ public class RosuBara extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Gheara gheara = new Gheara(hardwareMap);
         Glisiera glisiera = new Glisiera(hardwareMap);
+        BratGheara brat = new BratGheara(hardwareMap);
 
         Pose2d pose = new Pose2d(23.6, -70.3, 1.56);    //heading era 80.1
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
-        AccelConstraint accFast=new ProfileAccelConstraint(-80.0,80.0);
-        AccelConstraint accSlow = new ProfileAccelConstraint(-30.0, 30.0);
+        AccelConstraint accFast=new ProfileAccelConstraint(-100.0,100.0);
+        AccelConstraint accSlow = new ProfileAccelConstraint(-80.0, 80.0);
 
         VelConstraint speedFast= new MinVelConstraint(Arrays.asList(
                 new TranslationalVelConstraint(80.0),
@@ -59,26 +61,44 @@ public class RosuBara extends LinearOpMode {
 
         TrajectoryActionBuilder ajungereSample1 = plecareDupaPreload.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(52, -13), speedFast, accFast)         //trebuie testat si x = 52
-                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accSlow);
+                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accFast);
 
         TrajectoryActionBuilder prepareSample1 = ajungereSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(57, -57), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(57, -57), speedFast, accSlow);
 
-        TrajectoryActionBuilder ajungereSample2 = prepareSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(67, -13), speedFast, accSlow);
+//        TrajectoryActionBuilder ajungereSample2 = prepareSample1.endTrajectory().fresh()
+//                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accFast)
+//                .strafeToConstantHeading(new Vector2d(67, -13), speedFast, accSlow);
+//
+//        TrajectoryActionBuilder prepareSample2 = ajungereSample2.endTrajectory().fresh()
+//                .strafeToConstantHeading(new Vector2d(67, -57), speedFast, accFast);
 
-        TrajectoryActionBuilder prepareSample2 = ajungereSample2.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(67, -57), speedFast, accFast);
-
-        TrajectoryActionBuilder prepareToTakeSample1 = prepareSample2.endTrajectory().fresh()
-                        .strafeToConstantHeading(new Vector2d(59, -51), speedFast, accFast)
+        TrajectoryActionBuilder prepareToTakeSample1 = prepareSample1.endTrajectory().fresh()
+                        .strafeToConstantHeading(new Vector2d(59, -50), speedFast, accFast)
                         .turnTo(80);
-        
-        TrajectoryActionBuilder scoreSample1 = prepareToTakeSample1.endTrajectory().fresh()
+
+        TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
+                    .strafeToConstantHeading(new Vector2d(59, -57), speedFast, accFast);
+
+        TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
                         .turnTo(1.65)
-                        .strafeToConstantHeading(new Vector2d(10, -50), speedSlow, accSlow)
-                        .strafeToConstantHeading(new Vector2d(2, -41), speedFast, accFast);
+                        .strafeToConstantHeading(new Vector2d(10, -50), speedFast, accFast)
+                        .strafeToConstantHeading(new Vector2d(4, -42), speedFast, accFast);
+
+        TrajectoryActionBuilder prepareToTakeSample2 = scoreSample1.endTrajectory().fresh()
+                .turnTo(80)
+                .strafeToConstantHeading(new Vector2d(10, -50), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(57, -63), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(57, -64), speedFast, accFast);
+
+        TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
+                .turnTo(1.65)
+                .strafeToConstantHeading(new Vector2d(10, -58), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(6, -50), speedFast, accFast);
+
+        TrajectoryActionBuilder parcheaza =scoreSample2.endTrajectory().fresh()
+                .strafeToConstantHeading(new Vector2d(10, -50), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(57, -69), speedFast, accFast);
 
         Actions.runBlocking(gheara.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
@@ -98,11 +118,14 @@ public class RosuBara extends LinearOpMode {
         Action actPlecareDupaPreload = plecareDupaPreload.build();
         Action actToSample1 = ajungereSample1.build();
         Action actPrepareSample1 = prepareSample1.build();
-        Action actToSample2 = ajungereSample2.build();
-        Action actPrepareSample2 = prepareSample2.build();
+//        Action actToSample2 = ajungereSample2.build();
+//        Action actPrepareSample2 = prepareSample2.build();
         Action actPrepareToTakeSample1 = prepareToTakeSample1.build();
+        Action actTakeSample1 = takeSample1.build();
         Action actScoreSample1 = scoreSample1.build();
-
+        Action actPrepareToTakeSample2 = prepareToTakeSample2.build();
+        Action actScoreSample2 = scoreSample2.build();
+        Action actParcare = parcheaza.build();
 
         //aici se executa toate actiunile
 
@@ -115,22 +138,29 @@ public class RosuBara extends LinearOpMode {
                         ),
 
                         glisiera.glisieraOutake(),
-                        gheara.lasareGheara(),
+                        // aici lasare gheara
                         actPlecareDupaPreload,
 
                         new ParallelAction(
+                                gheara.lasareGheara(),
                                 actToSample1,
                                 glisiera.glisieraJos()
                         ),
 
                         actPrepareSample1,
-                        actToSample2,
-                        actPrepareSample2,
-                        actPrepareToTakeSample1,
+
+                        //actToSample2,
+                        //actPrepareSample2,
+
+                        new ParallelAction(
+                                actPrepareToTakeSample1,
+                                glisiera.glisieraJos()
+                        ),
                         
                         new SleepAction(0.4),
-                        gheara.prindeSampleBara(),
-                        new SleepAction(0.5),
+                        actTakeSample1,
+                        brat.prindeSampleDePePerete(),
+                        new SleepAction(0.4),
                         gheara.prindereGheara(),
                         new SleepAction(0.4),
                         new ParallelAction(
@@ -139,7 +169,27 @@ public class RosuBara extends LinearOpMode {
                                 glisiera.glisieraSusJumate()
                         ),
                         glisiera.glisieraOutake(),
-                        gheara.lasareGheara()
+
+                        new ParallelAction(
+                                actPrepareToTakeSample2,
+                                glisiera.glisieraJos(),
+                                gheara.lasareGheara()
+                        ),
+
+                        brat.prindeSampleDePePerete(),
+                        new SleepAction(0.4),
+                        gheara.prindereGheara(),
+                        new SleepAction(0.4),
+
+                        new ParallelAction(
+                                gheara.ridicareGhearaBrat(),
+                                actScoreSample2,
+                                glisiera.glisieraSusJumate()
+                        ),
+                        glisiera.glisieraOutake(),
+                        gheara.lasareGheara(),
+                        new SleepAction(0.3),
+                        actParcare
 
                 )
         );

@@ -52,7 +52,7 @@ public class Glisiera {
     }
 
     public Action glisieraJos(){
-        return GlisieraAction(1, -1, -0.8);
+        return GlisieraAction(1, -1, -1.0);
     }
 
     public Action glisieraParcareBara() {

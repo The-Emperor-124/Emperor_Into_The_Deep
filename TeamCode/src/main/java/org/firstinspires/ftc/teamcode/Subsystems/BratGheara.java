@@ -40,4 +40,8 @@ public class BratGheara {
     public Action prindeSampleBara(){
         return bratAction(0.81, 0.81);
     }
+
+    public Action prindeSampleDePePerete(){
+        return bratAction(0.67, 0.67);
+    }
 }

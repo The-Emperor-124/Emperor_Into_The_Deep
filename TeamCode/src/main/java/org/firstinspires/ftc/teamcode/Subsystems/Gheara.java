@@ -44,7 +44,7 @@ public class Gheara {
 
     // asta ar trb sa fie pozitia stass de prins sample in orice program
     public Action prindereGheara(){
-        return ghearaAction(0.97, -0.89);
+        return ghearaAction(0.94, -0.98);
     }
 
     // asta e pozitia stass de lasat orice sample in orice program
@@ -72,7 +72,7 @@ public class Gheara {
 
     // asta e pozitia prin care bratul e pozitionat sa ia sample din observation zone
     public Action prindeSampleBara(){
-        return bratAction(0.81, 0.81);
+        return bratAction(0.84, 0.84);
     }
 
 }

@@ -22,19 +22,22 @@ public class MeepMeepTesting {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(23.6, -70.3, 1.56))
-                        .strafeToConstantHeading(new Vector2d(0, -25))
-                        .strafeToConstantHeading(new Vector2d(20, -60))
-                        .strafeToConstantHeading(new Vector2d(51, -13))
-                        .strafeToConstantHeading(new Vector2d(57, -13))
-                        .strafeToConstantHeading(new Vector2d(57, -57))
-                        .strafeToConstantHeading(new Vector2d(57, -13))
-                        .strafeToConstantHeading(new Vector2d(67, -13))
-                        .strafeToConstantHeading(new Vector2d(67, -57))
-                        .strafeToConstantHeading(new Vector2d(57, -57))
-                        .turnTo(80.1)
-                        .turnTo(1.65)
-                        .strafeToConstantHeading(new Vector2d(10, -50))
-                        .strafeToConstantHeading(new Vector2d(0, -29))
+                .strafeToConstantHeading(new Vector2d(0, -25))
+                .strafeToConstantHeading(new Vector2d(20, -60))
+                .strafeToConstantHeading(new Vector2d(51, -13))
+                .strafeToConstantHeading(new Vector2d(57, -13))
+                .strafeToConstantHeading(new Vector2d(57, -57))
+                .strafeToConstantHeading(new Vector2d(57, -13))
+                .strafeToConstantHeading(new Vector2d(67, -13))
+                .strafeToConstantHeading(new Vector2d(67, -57))
+                .strafeToConstantHeading(new Vector2d(57, -57))
+                .turnTo(80.1)
+                .turnTo(1.65)
+
+                .strafeToConstantHeading(new Vector2d(10, -50))
+                .strafeToConstantHeading(new Vector2d(0, -29))
+                .strafeToConstantHeading(new Vector2d(10, -50))
+                .strafeToConstantHeading(new Vector2d(58, -59))
 
 
                 .build());
@@ -108,3 +111,22 @@ public class MeepMeepTesting {
                  */
 
 
+/*
+// comenzi pentru rosu bara
+// pozitie start : new Pose2d(23.6, -70.3, 1.56)
+
+                        .strafeToConstantHeading(new Vector2d(0, -25))
+                        .strafeToConstantHeading(new Vector2d(20, -60))
+                        .strafeToConstantHeading(new Vector2d(51, -13))
+                        .strafeToConstantHeading(new Vector2d(57, -13))
+                        .strafeToConstantHeading(new Vector2d(57, -57))
+                        .strafeToConstantHeading(new Vector2d(57, -13))
+                        .strafeToConstantHeading(new Vector2d(67, -13))
+                        .strafeToConstantHeading(new Vector2d(67, -57))
+                        .strafeToConstantHeading(new Vector2d(57, -57))
+                        .turnTo(80.1)
+                        .turnTo(1.65)
+                        .strafeToConstantHeading(new Vector2d(10, -50))
+                        .strafeToConstantHeading(new Vector2d(0, -29))
+
+ */
