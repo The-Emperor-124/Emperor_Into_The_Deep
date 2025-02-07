@@ -49,7 +49,7 @@ public class Gheara {
 
     // asta e pozitia stass de lasat orice sample in orice program
     public Action lasareGheara(){
-        return ghearaAction(0.78, 0.28);
+        return ghearaAction(0.78, 0.1);
     }
 
     // asta e doar pentru autonomiile de la cos, pozitia pentru gheara de la

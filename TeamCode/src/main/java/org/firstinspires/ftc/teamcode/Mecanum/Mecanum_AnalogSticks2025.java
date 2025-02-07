@@ -171,7 +171,7 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.y)
             {
-                servoGrSta.setPosition(0.24);
+                servoGrSta.setPosition(0.1);
                 servoGrDr.setPosition(0.8);     //0.8
             }
             if(gamepad2.a) //prindere
