@@ -86,7 +86,7 @@ public class RosuCos extends LinearOpMode {
                 .turnTo(-0.1);
 
         TrajectoryActionBuilder parcare = prevParcare.endTrajectory().fresh()
-                        .strafeToConstantHeading(new Vector2d(-30, -5),speedSlow ,accSlow);
+                .strafeToConstantHeading(new Vector2d(-30, -5),speedSlow ,accSlow);
 
         Actions.runBlocking(brat.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());

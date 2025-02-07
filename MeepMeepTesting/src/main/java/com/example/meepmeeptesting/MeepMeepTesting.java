@@ -21,16 +21,13 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-17.8, -70, 1.56))
-                       // .strafeToConstantHeading(new Vector2d(-17, -64))
-                        //.strafeToConstantHeading(new Vector2d(-65, -63))
-                        //.turnTo(79.8)
-                        .strafeToConstantHeading(new Vector2d(-17,-64))
-                        .strafeToConstantHeading(new Vector2d(-65,-63))
-                        .turnTo(79)
-                        .strafeToConstantHeading(new Vector2d(-50, -15))
-                        .turnTo(7) //6.24 e bun rtire stanga
-                        .turnTo(-0.1)
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(17.8, 70.1, -89.5))
+                .strafeToConstantHeading(new Vector2d(17,64))
+                .strafeToConstantHeading(new Vector2d(67.5, 63.5))  // era 66 cand lovea 60.3, 63.2
+                .turnTo(358.9)
+                .strafeToConstantHeading(new Vector2d(50, 15))
+                .turnTo(3)
+
 
 
                 .build());
