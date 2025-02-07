@@ -53,7 +53,8 @@ public class RosuCos extends LinearOpMode {
 
         ));
 
-        //Actions.runBlocking(brat.prindeSampleDePePerete());
+        Actions.runBlocking(brat.ridicareGhearaBrat());
+        Actions.runBlocking(gheara.prindereGheara());
 
         waitForStart();
 
