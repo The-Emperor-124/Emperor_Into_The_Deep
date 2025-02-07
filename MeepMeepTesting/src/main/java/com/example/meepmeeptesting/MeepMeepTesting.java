@@ -22,9 +22,15 @@ public class MeepMeepTesting {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-17.8, -70, 1.56))
-                        .strafeToConstantHeading(new Vector2d(-17, -64))
-                        .strafeToConstantHeading(new Vector2d(-65, -63))
-                        .turnTo(79.8)
+                       // .strafeToConstantHeading(new Vector2d(-17, -64))
+                        //.strafeToConstantHeading(new Vector2d(-65, -63))
+                        //.turnTo(79.8)
+                        .strafeToConstantHeading(new Vector2d(-17,-64))
+                        .strafeToConstantHeading(new Vector2d(-65,-63))
+                        .turnTo(79)
+                        .strafeToConstantHeading(new Vector2d(-50, -15))
+                        .turnTo(7) //6.24 e bun rtire stanga
+                        .turnTo(-0.1)
 
 
                 .build());

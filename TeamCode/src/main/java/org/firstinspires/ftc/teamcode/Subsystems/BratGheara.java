@@ -44,4 +44,9 @@ public class BratGheara {
     public Action prindeSampleDePePerete(){
         return bratAction(0.67, 0.67);
     }
+
+    public Action pozitioneazaBratParcareCos(){
+        return bratAction(0.65,0.65);
+    }
+
 }
