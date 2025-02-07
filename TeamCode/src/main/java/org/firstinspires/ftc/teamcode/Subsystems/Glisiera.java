@@ -50,7 +50,7 @@ public class Glisiera {
     public Action glisieraOutake(){
         return GlisieraAction(400, -400, 1.0);
     }
-    
+
     public Action glisieraJos(){
         return GlisieraAction(1, -1, 0.8);
     }
