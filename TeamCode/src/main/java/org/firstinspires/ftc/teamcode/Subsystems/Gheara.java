@@ -42,19 +42,30 @@ public class Gheara {
         };
     }
 
+    // asta ar trb sa fie pozitia stass de prins sample in orice program
     public Action prindereGheara(){
         return ghearaAction(0.97, -0.89);
     }
 
+    // asta e pozitia stass de lasat orice sample in orice program
     public Action lasareGheara(){
         return ghearaAction(0.78, 0.28);
     }
 
+    // asta e doar pentru autonomiile de la cos, pozitia pentru gheara de la
+    // prindere sample 3
+    public Action prindeSamplePerete(){
+        return ghearaAction(0.7, 0.2);
+    }
+
+    // asta ar trebui sa fie stass pentru toate, brat gheara vertical
     public Action ridicareGhearaBrat(){
         return bratAction(0.52, 0.52);
     }
 
-    public Action pozitieObligaGheara(){
+    // asta e
+    //fosta pozitie obligaGheara 0.9, 0.9
+    public Action pozitioneazaBratPentruSampleDePeTeren(){
         return bratAction(0.9, 0.9);
     }
 

@@ -71,6 +71,7 @@ public class  AlbastruCos extends LinearOpMode{
         public Action lasareGheara() {
             return new LasareGheara();
         }
+
         public class caramidaperete implements Action{
             @Override
             public boolean run(@NonNull TelemetryPacket packet){

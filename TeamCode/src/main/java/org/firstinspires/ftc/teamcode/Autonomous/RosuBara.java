@@ -25,6 +25,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 
 
 @Autonomous(name="RosuBara", group = "Autonomous")
+
 public class RosuBara extends LinearOpMode {
 
 
