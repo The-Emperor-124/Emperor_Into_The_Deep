@@ -48,11 +48,22 @@ public class Glisiera {
     }
 
     public Action glisieraOutake(){
-        return GlisieraAction(400, -400, 1.0);
+        return GlisieraAction(400, -400, -1.0);
     }
 
     public Action glisieraJos(){
-        return GlisieraAction(1, -1, 0.8);
+        return GlisieraAction(1, -1, -0.8);
     }
 
+    public Action glisieraParcareBara() {
+        return GlisieraAction(1380, -1379, 0.8);
+    }
+
+    public Action glisieraSusCos() {
+        return GlisieraAction(3753, -3765, 0.7);    // n avea delay pe 0.7
+    }
+
+    public Action glisieraSusCosRapid() {
+        return GlisieraAction(3753, -3765, 0.9);
+    }   //  0.8 //0.6 inainte
 }

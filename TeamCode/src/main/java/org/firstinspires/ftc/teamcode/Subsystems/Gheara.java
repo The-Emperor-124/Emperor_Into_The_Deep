@@ -54,7 +54,8 @@ public class Gheara {
 
     // asta e doar pentru autonomiile de la cos, pozitia pentru gheara de la
     // prindere sample 3
-    public Action prindeSamplePerete(){
+    //fosta pozitie pt caramida perete
+    public Action deschideGhearaPentruSamplePerete(){
         return ghearaAction(0.7, 0.2);
     }
 
@@ -63,12 +64,13 @@ public class Gheara {
         return bratAction(0.52, 0.52);
     }
 
-    // asta e
+    // asta e pozitia cu care ar lua sample de pe teren(ground)
     //fosta pozitie obligaGheara 0.9, 0.9
     public Action pozitioneazaBratPentruSampleDePeTeren(){
         return bratAction(0.9, 0.9);
     }
 
+    // asta e pozitia prin care bratul e pozitionat sa ia sample din observation zone
     public Action prindeSampleBara(){
         return bratAction(0.81, 0.81);
     }

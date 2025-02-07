@@ -27,8 +27,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 @Autonomous(name="RosuBara", group = "Autonomous")
 
 public class RosuBara extends LinearOpMode {
-
-
     @Override
     public void runOpMode() throws InterruptedException {
         Gheara gheara = new Gheara(hardwareMap);
