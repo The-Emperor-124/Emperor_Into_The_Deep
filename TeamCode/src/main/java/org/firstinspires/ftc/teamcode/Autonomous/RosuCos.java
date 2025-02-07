@@ -35,8 +35,8 @@ public class RosuCos extends LinearOpMode {
         BratGheara brat = new BratGheara(hardwareMap);
         Glisiera glisiera = new Glisiera(hardwareMap);
 
-        Pose2d pose = new Pose2d(-17.8, -70.1, 1.56);
-        MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
+        Pose2d pozitieInitiala= new Pose2d(-17.8, -70.1, 1.56);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, pozitieInitiala);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-80.0,80.0);
         AccelConstraint accSlow = new ProfileAccelConstraint(-30.0, 30.0);
@@ -52,6 +52,8 @@ public class RosuCos extends LinearOpMode {
                 new AngularVelConstraint(Math.PI / 2)
 
         ));
+
+        TrajectoryActionBuilder scorePreload = drive.actionBuilder(pozitieInitiala)
 
         Actions.runBlocking(brat.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
