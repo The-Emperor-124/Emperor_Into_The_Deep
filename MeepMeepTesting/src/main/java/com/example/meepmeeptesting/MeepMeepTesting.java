@@ -21,12 +21,30 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(17.8, 70.1, -89.5))
-                .strafeToConstantHeading(new Vector2d(17,64))
-                .strafeToConstantHeading(new Vector2d(67.5, 63.5))  // era 66 cand lovea 60.3, 63.2
-                .turnTo(358.9)
-                .strafeToConstantHeading(new Vector2d(50, 15))
-                .turnTo(3)
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-17.8, -70.1, 1.56))
+                                .turnTo(2)
+             /*   .strafeToConstantHeading(new Vector2d(-17, -64))
+                .strafeToConstantHeading(new Vector2d(-65, -61.5))
+                        .turnTo(79.3)
+                .strafeToConstantHeading(new Vector2d(-59, -63))
+                        .turnTo(1.56)
+                .strafeToConstantHeading(new Vector2d(-55, -53))
+                        .turnTo(79.1)
+                .strafeToConstantHeading(new Vector2d(-65, -65))
+                .strafeToConstantHeading(new Vector2d(-59, -63))
+                        .turnTo(1.56)
+                .strafeToConstantHeading(new Vector2d(-67, -52))
+                        .turnTo(79.1)
+                .strafeToConstantHeading(new Vector2d(-65, -65))
+                                .strafeToConstantHeading(new Vector2d(-69,-65))
+                //.strafeToConstantHeading(new Vector2d(57, -57))
+                //.turnTo(80.1)
+                //.turnTo(1.65)
+
+              /*  .strafeToConstantHeading(new Vector2d(10, -50))
+                .strafeToConstantHeading(new Vector2d(0, -29))
+                .strafeToConstantHeading(new Vector2d(10, -50))
+                .strafeToConstantHeading(new Vector2d(58, -59))*/
 
 
 

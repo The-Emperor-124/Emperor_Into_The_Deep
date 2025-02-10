@@ -53,17 +53,17 @@ public class Glisiera {
 
     public Action glisieraJos(){
         return GlisieraAction(1, -1, -1.0);
-    }
+    } //erau 1 -1 -1.0
 
     public Action glisieraParcareBara() {
-        return GlisieraAction(1380, -1379, 0.8);
-    }
+        return GlisieraAction(1474, -1470, 0.8);
+    } // erau 1380 -1379
 
     public Action glisieraSusCos() {
-        return GlisieraAction(3753, -3765, 0.7);    // n avea delay pe 0.7
+        return GlisieraAction(3853, -3865, 0.7);    // n avea delay pe 0.7
     }
 
     public Action glisieraSusCosRapid() {
-        return GlisieraAction(3753, -3765, 0.9);
+        return GlisieraAction(3468, -3456, 0.9); // erau 3853 -38665 0.9
     }   //  0.8 //0.6 inainte
 }

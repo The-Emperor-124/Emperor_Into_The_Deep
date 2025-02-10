@@ -25,9 +25,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.Gheara;
 import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 
 
-@Autonomous(name="RosuCos", group = "Autonomous")
+@Autonomous(name="AutoCosRosuV2Test", group = "Autonomous")
 
-public class RosuCos extends LinearOpMode {
+public class AutoCosRosuV2Test extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -79,6 +79,16 @@ public class RosuCos extends LinearOpMode {
         TrajectoryActionBuilder scoreSample2 = drumToSample2.endTrajectory().fresh()
                 .turnTo(79.1)
                 .strafeToConstantHeading(new Vector2d(-65, -65), speedFast, accFast);
+        // sample 3
+        TrajectoryActionBuilder prevDrumToSample3= scoreSample2.endTrajectory().fresh()
+                .strafeToConstantHeading(new Vector2d(-59,-63),speedFast,accFast);
+        TrajectoryActionBuilder drumToSample3=prevDrumToSample3.endTrajectory().fresh()
+                .turnTo(2)
+                .strafeToConstantHeading(new Vector2d(-67,-53.8),speedFast,accFast);
+
+        TrajectoryActionBuilder scoreSampl3=drumToSample3.endTrajectory().fresh()
+                .turnTo(79.1)
+                .strafeToConstantHeading(new Vector2d(-65,-65),speedFast,accFast);
 
         TrajectoryActionBuilder prevParcare = scoreSample2.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(-50, -15), speedFast, accFast)
@@ -109,6 +119,14 @@ public class RosuCos extends LinearOpMode {
         Action actPrevDrumToSample2 = prevDrumToSample2.build();
         Action actDrumToSample2 = drumToSample2.build();
         Action actScoreSample2 = scoreSample2.build();
+        // sample 3
+        Action actPrevDrumToSample3=prevDrumToSample3.build();
+        Action actDrumToSample3=drumToSample3.build();
+        Action actScoreSample3=scoreSampl3.build();
+
+
+
+
 
         Action actPrevParcare = prevParcare.build();
         Action actParcare = parcare.build();
@@ -153,14 +171,30 @@ public class RosuCos extends LinearOpMode {
                                 actScoreSample2,
                                 glisiera.glisieraSusCosRapid()
                         ),
-                        gheara.deschideGhearaPentruSamplePerete(),
-                        actPrevParcare,
+                        gheara.lasareGheara(),
+
+                       actPrevDrumToSample3,
+                       new ParallelAction(
+                               actDrumToSample3,
+                               glisiera.glisieraJos()
+                       ),
+                       brat.pozitioneazaBratPentruSampleDePeTeren(),
+                       new SleepAction(0.5),
+                       gheara.prindereGheara(),
+                       new SleepAction(0.3),
+                       new ParallelAction(
+                               brat.ridicareGhearaBrat(),
+                               actScoreSample3,
+                               glisiera.glisieraSusCosRapid()
+                       ),
+                       gheara.lasareGheara()
+                       /* actPrevParcare,
                         new ParallelAction(
                                 actParcare,
                                 glisiera.glisieraParcareBara()
                         ),
                         brat.pozitioneazaBratParcareCos(),
-                        new SleepAction(0.2)
+                        new SleepAction(0.2)*/
 
                 )
         );

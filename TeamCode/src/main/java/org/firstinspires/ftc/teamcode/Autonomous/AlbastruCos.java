@@ -83,7 +83,7 @@ public class  AlbastruCos extends LinearOpMode{
 
         TrajectoryActionBuilder drumToSample2  = prevDrumToSample2.endTrajectory().fresh()
                 .turnTo(-89.5)
-                .strafeToConstantHeading(new Vector2d(67, 54.5), speedFast, accFast);     // era 53
+                .strafeToConstantHeading(new Vector2d(67, 53.5), speedFast, accFast);     //54.5 inainte de timisoara da nu mergea pe terenul de acolo// era 53
 
         TrajectoryActionBuilder scoreSample2 = drumToSample2.endTrajectory().fresh()
                 .turnTo(88.4)
