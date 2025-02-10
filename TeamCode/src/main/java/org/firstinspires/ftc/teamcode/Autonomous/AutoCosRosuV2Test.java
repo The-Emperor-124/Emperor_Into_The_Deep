@@ -84,9 +84,10 @@ public class AutoCosRosuV2Test extends LinearOpMode {
                 .strafeToConstantHeading(new Vector2d(-59,-63),speedFast,accFast);
         TrajectoryActionBuilder drumToSample3=prevDrumToSample3.endTrajectory().fresh()
                 .turnTo(2)
-                .strafeToConstantHeading(new Vector2d(-67,-53.8),speedFast,accFast);
+                .strafeToConstantHeading(new Vector2d(-69.7,-50.8),speedFast,accFast);
 
         TrajectoryActionBuilder scoreSampl3=drumToSample3.endTrajectory().fresh()
+                .turnTo(240)
                 .turnTo(79.1)
                 .strafeToConstantHeading(new Vector2d(-65,-65),speedFast,accFast);
 

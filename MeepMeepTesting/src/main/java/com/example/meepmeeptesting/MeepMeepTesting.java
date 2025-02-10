@@ -22,7 +22,10 @@ public class MeepMeepTesting {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-17.8, -70.1, 1.56))
-                                .turnTo(2)
+                        .turnTo(2)
+                                .turnTo(240)
+                        .turnTo(79.1)
+                                .strafeToConstantHeading(new Vector2d(-71,-51))
              /*   .strafeToConstantHeading(new Vector2d(-17, -64))
                 .strafeToConstantHeading(new Vector2d(-65, -61.5))
                         .turnTo(79.3)
