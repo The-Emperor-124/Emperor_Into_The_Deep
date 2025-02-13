@@ -63,8 +63,8 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
         servoGrDr.setDirection(Servo.Direction.REVERSE);
         servo_tg2.setPosition(0.5);// era 0.01
         servo_tg1.setPosition(0.5);// era 0.01
-        servoGrDr.setPosition(0.95);//-0.3 si 0
-        servoGrSta.setPosition(-1); //era 0.33 dupa 0.97
+        servoGrDr.setPosition(0.85);//era 0.95
+        servoGrSta.setPosition(0.30); //era -1
 
 
         ridicareDr.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -146,8 +146,8 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.left_bumper)
             {
-                servo_tg1.setPosition(0.81); //era 0.83, merge bine 0.85
-                servo_tg2.setPosition(0.81);
+                servo_tg1.setPosition(0.82); //era 0.83, merge bine 0.85
+                servo_tg2.setPosition(0.82);
             }
             if(gamepad2.dpad_up)
             {
@@ -161,23 +161,23 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.dpad_right)
             {
-                servo_tg1.setPosition(0.79); //era 0.78 la ambele, am schimbat un 0.81 (semibun)
-                servo_tg2.setPosition(0.79);
+                servo_tg1.setPosition(0.77); //era 0.79 la ambele, dar era prea jos
+                servo_tg2.setPosition(0.77);
             }
             if(gamepad2.dpad_down)
             {
-                servo_tg1.setPosition(0.83); //0.86 e ok, incerc 0.85
+                servo_tg1.setPosition(0.83); //aveam 0.83
                 servo_tg2.setPosition(0.83);
             }
             if(gamepad2.y)
             {
-                servoGrSta.setPosition(0.1);
-                servoGrDr.setPosition(0.8);     //0.8
+                servoGrSta.setPosition(0.50);
+                servoGrDr.setPosition(0.69);     //0.8
             }
             if(gamepad2.a) //prindere
             {
-                servoGrSta.setPosition(-0.97);//-0.97
-                servoGrDr.setPosition(0.93);//0.97   dupa 0.96
+                servoGrSta.setPosition(0.30); //era -0.97 dar am schimbat servo
+                servoGrDr.setPosition(0.85);//0.97   dupa 0.96
             }
             //cod pt glisiera constanta
             if (gamepad2.left_trigger>0.0)
