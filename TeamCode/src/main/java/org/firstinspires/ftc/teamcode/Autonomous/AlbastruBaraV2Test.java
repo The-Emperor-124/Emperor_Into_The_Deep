@@ -25,9 +25,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.Gheara;
 import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 
 
-@Autonomous(name="AlbastruBara", group = "Autonomous")
+@Autonomous(name="AlbastruBaraV2Test", group = "Autonomous")
 
-public class AlbastruBara extends LinearOpMode {
+public class AlbastruBaraV2Test extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         Gheara gheara = new Gheara(hardwareMap);
@@ -77,19 +77,21 @@ public class AlbastruBara extends LinearOpMode {
                 .strafeToConstantHeading(new Vector2d(-59, 50), speedFast, accFast)
                 .turnTo(-80);
 
+
         TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(-59, 57), speedFast, accFast);
+
 
         TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
                 .turnTo(-1.65)
                 .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-4, 41), speedFast, accFast);     // - 42
+                .strafeToConstantHeading(new Vector2d(-6, 43), speedFast, accFast);     // - 42
 
         TrajectoryActionBuilder prepareToTakeSample2 = scoreSample1.endTrajectory().fresh()
                 .turnTo(-80)
                 .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 63), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 66), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(-57, 63), speedFast, accFast);
+               // .strafeToConstantHeading(new Vector2d(-59, 63), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
                 .turnTo(-1.65)
@@ -98,7 +100,7 @@ public class AlbastruBara extends LinearOpMode {
 
         TrajectoryActionBuilder parcheaza =scoreSample2.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 69), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(-57, 72), speedFast, accFast);
 
         Actions.runBlocking(gheara.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
