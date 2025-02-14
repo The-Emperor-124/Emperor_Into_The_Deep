@@ -91,7 +91,7 @@ public class RosuBarraV2Test extends LinearOpMode {
                 .turnTo(80)
                 .strafeToConstantHeading(new Vector2d(10, -50), speedFast, accFast)
                 .strafeToConstantHeading(new Vector2d(57, -63), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(59, -65.9), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(59, -66), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
                 .turnTo(1.65)
