@@ -25,16 +25,16 @@ import org.firstinspires.ftc.teamcode.Subsystems.Gheara;
 import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 
 
-@Autonomous(name="AlbastruBara", group = "Autonomous")
+@Autonomous(name="RosuBaraV2Test", group = "Autonomous")
 
-public class AlbastruBara extends LinearOpMode {
+public class RosuBarraV2Test extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         Gheara gheara = new Gheara(hardwareMap);
         Glisiera glisiera = new Glisiera(hardwareMap);
         BratGheara brat = new BratGheara(hardwareMap);
 
-        Pose2d pose = new Pose2d(-23.6, 70.3, -1.56);    //heading era 80.1
+        Pose2d pose = new Pose2d(23.6, -70.3, 1.56);    //heading era 80.1
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-100.0,100.0);
@@ -54,17 +54,17 @@ public class AlbastruBara extends LinearOpMode {
 
         //prima actiune este cea in care mergem la bara sa punem preload
         TrajectoryActionBuilder drumPreload = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(-0, 37), speedFast, accFast);     // -40
+                .strafeToConstantHeading(new Vector2d(0, -37), speedFast, accFast);     // -40
 
         TrajectoryActionBuilder plecareDupaPreload=drumPreload.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-46, 45), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(46, -45), speedFast, accFast);
 
         TrajectoryActionBuilder ajungereSample1 = plecareDupaPreload.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-52, 13), speedFast, accFast)         //trebuie testat si x = 52
-                .strafeToConstantHeading(new Vector2d(-57, 13), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(52, -13), speedFast, accFast)         //trebuie testat si x = 52
+                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accFast);
 
         TrajectoryActionBuilder prepareSample1 = ajungereSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-57, 57), speedFast, accSlow);
+                .strafeToConstantHeading(new Vector2d(57, -57), speedFast, accSlow);
 
 //        TrajectoryActionBuilder ajungereSample2 = prepareSample1.endTrajectory().fresh()
 //                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accFast)
@@ -74,31 +74,33 @@ public class AlbastruBara extends LinearOpMode {
 //                .strafeToConstantHeading(new Vector2d(67, -57), speedFast, accFast);
 
         TrajectoryActionBuilder prepareToTakeSample1 = prepareSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, 50), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(59, -50), speedFast, accFast)
                 .turnTo(80);
 
+
         TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, 57), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(59, -57), speedFast, accFast);
+
 
         TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
-                .turnTo(-1.65)
-                .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-4, 41), speedFast, accFast);     // - 42
+                .turnTo(1.65)
+                .strafeToConstantHeading(new Vector2d(10, -50), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(6, -43), speedFast, accFast);     // - 42
 
         TrajectoryActionBuilder prepareToTakeSample2 = scoreSample1.endTrajectory().fresh()
                 .turnTo(80)
-                .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 63), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 66), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(10, -50), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(57, -63), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(59, -65.9), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
-                .turnTo(-1.65)
-                .strafeToConstantHeading(new Vector2d(-10, 58), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-6, 49), speedFast, accFast); //-50
+                .turnTo(1.65)
+                .strafeToConstantHeading(new Vector2d(10, -58), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(6, -49), speedFast, accFast); //-50
 
         TrajectoryActionBuilder parcheaza =scoreSample2.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 69), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(10, -50), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(57, -72), speedFast, accFast);
 
         Actions.runBlocking(gheara.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());

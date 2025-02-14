@@ -39,7 +39,7 @@ public class MeepMeepTesting {
                                 .strafeToConstantHeading(new Vector2d(-57,66))
                                 .turnTo(1.65)
                                 .strafeToConstantHeading(new Vector2d(-10,58))
-                                .strafeToConstantHeading(new Vector2d(-6,49))
+                                .strafeToConstantHeading(new Vector2d(-8,49))
                                 .strafeToConstantHeading(new Vector2d(-10,50))
                                 .strafeToConstantHeading(new Vector2d(-57,69))
              /*   .strafeToConstantHeading(new Vector2d(-17, -64))

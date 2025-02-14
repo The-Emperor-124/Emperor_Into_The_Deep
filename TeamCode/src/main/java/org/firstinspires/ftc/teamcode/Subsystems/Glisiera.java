@@ -44,12 +44,12 @@ public class Glisiera {
     }
 
     public Action glisieraSusJumate(){
-        return GlisieraAction(1182, -1207, 1.0);
+        return GlisieraAction(1358, -1354, 1.0);
     }
 
     public Action glisieraOutake(){
         return GlisieraAction(400, -400, -1.0);
-    }
+    } //erau 400 - 400
 
     public Action glisieraJos(){
         return GlisieraAction(1, -1, -1.0);
