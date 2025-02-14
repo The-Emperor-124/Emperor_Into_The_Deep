@@ -75,4 +75,7 @@ public class Gheara {
         return bratAction(0.84, 0.84);
     }
 
+    // asta e pozitie pt sample la perete ca sa nu mai modific pozitia ca e ok
+
+
 }
