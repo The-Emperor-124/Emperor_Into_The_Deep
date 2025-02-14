@@ -44,13 +44,13 @@ public class Gheara {
 
     // asta ar trb sa fie pozitia stass de prins sample in orice program
     public Action prindereGheara(){
-        return ghearaAction(0.94, -0.98);
-    }
+        return ghearaAction(0.85, 0.30);
+    } //era 0.94 si -0.98
 
     // asta e pozitia stass de lasat orice sample in orice program
     public Action lasareGheara(){
-        return ghearaAction(0.78, 0.1);
-    }
+        return ghearaAction(0.69, 0.50);
+    } //era 0.78 si 0.1
 
     // asta e doar pentru autonomiile de la cos, pozitia pentru gheara de la
     // prindere sample 3

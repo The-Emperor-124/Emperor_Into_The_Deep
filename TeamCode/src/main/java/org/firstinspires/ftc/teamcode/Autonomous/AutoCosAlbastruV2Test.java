@@ -25,9 +25,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.Gheara;
 import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 
 
-@Autonomous(name="AutoCosRosuV2Test", group = "Autonomous")
+@Autonomous(name="AutoCosAlbastruV2Test", group = "Autonomous")
 
-public class AutoCosRosuV2Test extends LinearOpMode {
+public class AutoCosAlbastruV2Test extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
