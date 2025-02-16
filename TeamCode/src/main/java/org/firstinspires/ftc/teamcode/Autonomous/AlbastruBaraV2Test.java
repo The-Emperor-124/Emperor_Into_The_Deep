@@ -79,28 +79,38 @@ public class AlbastruBaraV2Test extends LinearOpMode {
 
 
         TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, 57), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(-59, 57), speedFast, accFast);//57
 
 
         TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
                 .turnTo(-1.65)
                 .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-6, 43), speedFast, accFast);     // - 42
+                .strafeToConstantHeading(new Vector2d(-6, 42.2), speedFast, accFast);     // - 42
 
         TrajectoryActionBuilder prepareToTakeSample2 = scoreSample1.endTrajectory().fresh()
                 .turnTo(-80)
                 .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 63), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(-57, 56), speedFast, accFast);
                // .strafeToConstantHeading(new Vector2d(-59, 63), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
                 .turnTo(-1.65)
                 .strafeToConstantHeading(new Vector2d(-10, 58), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-6, 49), speedFast, accFast); //-50
+                .strafeToConstantHeading(new Vector2d(-6, 37.6), speedFast, accFast); //-50
+
+        // sample 3
+       /* TrajectoryActionBuilder prepareToTakeSample3=scoreSample2.endTrajectory().fresh()
+                .turnTo(-80)
+                .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(-57, 42), speedFast, accFast);
+        TrajectoryActionBuilder scoreSample3=prepareToTakeSample3.endTrajectory().fresh()
+                .turnTo(-1.65)
+                .strafeToConstantHeading(new Vector2d(-10, 58), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(3, 37.8), speedFast, accFast);*/
 
         TrajectoryActionBuilder parcheaza =scoreSample2.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-57, 72), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(-57, 66), speedFast, accFast);
 
         Actions.runBlocking(gheara.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
@@ -127,6 +137,9 @@ public class AlbastruBaraV2Test extends LinearOpMode {
         Action actScoreSample1 = scoreSample1.build();
         Action actPrepareToTakeSample2 = prepareToTakeSample2.build();
         Action actScoreSample2 = scoreSample2.build();
+        // sample 3
+       // Action actPrepareToTakeSample3=prepareToTakeSample3.build();
+        //Action actscoreSample3=scoreSample3.build();
         Action actParcare = parcheaza.build();
 
         //aici se executa toate actiunile
@@ -189,8 +202,22 @@ public class AlbastruBaraV2Test extends LinearOpMode {
                                 glisiera.glisieraSusJumate()
                         ),
                         glisiera.glisieraOutake(),
-                        gheara.lasareGheara(),
+                        /*new ParallelAction(
+                                actPrepareToTakeSample3,
+                                glisiera.glisieraJos(),
+                                gheara.lasareGheara()
+
+                        ),
+                        brat.prindeSampleDePePerete(),
                         new SleepAction(0.3),
+                        gheara.prindereGheara(),
+                        new SleepAction(0.4),
+                        new ParallelAction(
+                                gheara.ridicareGhearaBrat(),
+                                actscoreSample3,
+                                glisiera.glisieraSusJumate()
+                        ),
+                        glisiera.glisieraOutake(),*/
                         actParcare
 
                 )
