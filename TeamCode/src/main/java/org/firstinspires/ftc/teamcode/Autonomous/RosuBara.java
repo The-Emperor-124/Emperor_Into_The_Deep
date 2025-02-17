@@ -37,11 +37,11 @@ public class RosuBara extends LinearOpMode {
         Pose2d pose = new Pose2d(23.6, -70.3, 1.56);    //heading era 80.1
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
-        AccelConstraint accFast=new ProfileAccelConstraint(-100.0,100.0);
-        AccelConstraint accSlow = new ProfileAccelConstraint(-80.0, 80.0);
+        AccelConstraint accFast=new ProfileAccelConstraint(-120.0,140.0);
+        AccelConstraint accSlow = new ProfileAccelConstraint(-120.0, 120.0);
 
         VelConstraint speedFast= new MinVelConstraint(Arrays.asList(
-                new TranslationalVelConstraint(80.0),
+                new TranslationalVelConstraint(120.0),
                 new AngularVelConstraint(Math.PI / 2)
 
         ));
@@ -57,11 +57,11 @@ public class RosuBara extends LinearOpMode {
                 .strafeToConstantHeading(new Vector2d(0, -37), speedFast, accFast);     // -40
 
         TrajectoryActionBuilder plecareDupaPreload=drumPreload.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(46, -45), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(46, -44), speedFast, accFast);
 
         TrajectoryActionBuilder ajungereSample1 = plecareDupaPreload.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(52, -13), speedFast, accFast)         //trebuie testat si x = 52
-                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(56, -13), speedFast, accFast);
 
         TrajectoryActionBuilder prepareSample1 = ajungereSample1.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(57, -57), speedFast, accSlow);

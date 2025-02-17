@@ -64,6 +64,6 @@ public class Glisiera {
     }
 
     public Action glisieraSusCosRapid() {
-        return GlisieraAction(3468, -3456, 0.9); // erau 3853 -38665 0.9
+        return GlisieraAction(3500, -3480, 1.0); // erau 3853 -38665 0.9
     }   //  0.8 //0.6 inainte
 }

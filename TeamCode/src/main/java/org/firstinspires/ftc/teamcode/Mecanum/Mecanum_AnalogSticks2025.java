@@ -146,8 +146,8 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.left_bumper)
             {
-                servo_tg1.setPosition(0.82); //era 0.83, merge bine 0.85
-                servo_tg2.setPosition(0.82);
+                servo_tg1.setPosition(0.81); //era 0.82
+                servo_tg2.setPosition(0.81);
             }
             if(gamepad2.dpad_up)
             {
@@ -171,8 +171,8 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
             }
             if(gamepad2.y)
             {
-                servoGrSta.setPosition(0.50);
-                servoGrDr.setPosition(0.69);     //0.8
+                servoGrSta.setPosition(0.47); // era 0.50
+                servoGrDr.setPosition(0.66);     //era 0.69
             }
             if(gamepad2.a) //prindere
             {

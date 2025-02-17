@@ -43,7 +43,7 @@ public class  AlbastruCos extends LinearOpMode{
         BratGheara brat = new BratGheara(hardwareMap);
         Glisiera glisisera = new Glisiera(hardwareMap);
 
-        Pose2d pozitieInitiala = new Pose2d(17.8, 70.1, -89.5);
+        Pose2d pozitieInitiala = new Pose2d(39.9, 70.1, -89.5);
         MecanumDrive drive = new MecanumDrive(hardwareMap, pozitieInitiala);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-100, 140);
@@ -62,8 +62,8 @@ public class  AlbastruCos extends LinearOpMode{
         ));
 
         TrajectoryActionBuilder scorePreload = drive.actionBuilder(pozitieInitiala)
-                .strafeToConstantHeading(new Vector2d(18,64), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(65, 62), speedFast, accFast)  // era 66 cand lovea 60.3, 63.2
+                .strafeToConstantHeading(new Vector2d(39.9,64), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(65, 61.5), speedFast, accFast)  // era 66 cand lovea 60.3, 63.2
                 .turnTo(358.9)
                 .strafeToConstantHeading(new Vector2d(66, 66), speedFast, accSlow);
 

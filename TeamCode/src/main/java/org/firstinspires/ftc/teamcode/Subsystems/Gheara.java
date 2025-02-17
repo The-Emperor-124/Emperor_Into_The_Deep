@@ -56,7 +56,11 @@ public class Gheara {
     // prindere sample 3
     //fosta pozitie pt caramida perete
     public Action deschideGhearaPentruSamplePerete(){
-        return ghearaAction(0.7, 0.2);
+        return ghearaAction(0.5, 0.65);
+    }
+
+    public Action inchideGhearaPentruColectareSamplePerete(){
+        return ghearaAction(0.70, 0.40);
     }
 
     // asta ar trebui sa fie stass pentru toate, brat gheara vertical
@@ -76,6 +80,9 @@ public class Gheara {
     }
 
     // asta e pozitie pt sample la perete ca sa nu mai modific pozitia ca e ok
+
+
+    // aici est
 
 
 }

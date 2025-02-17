@@ -37,11 +37,11 @@ public class RosuBarraV2Test extends LinearOpMode {
         Pose2d pose = new Pose2d(23.6, -70.3, 1.56);    //heading era 80.1
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
-        AccelConstraint accFast=new ProfileAccelConstraint(-100.0,100.0);
-        AccelConstraint accSlow = new ProfileAccelConstraint(-80.0, 80.0);
+        AccelConstraint accFast=new ProfileAccelConstraint(-140.0,140.0);
+        AccelConstraint accSlow = new ProfileAccelConstraint(-140.0, 140.0);
 
         VelConstraint speedFast= new MinVelConstraint(Arrays.asList(
-                new TranslationalVelConstraint(80.0),
+                new TranslationalVelConstraint(140.0),
                 new AngularVelConstraint(Math.PI / 2)
 
         ));

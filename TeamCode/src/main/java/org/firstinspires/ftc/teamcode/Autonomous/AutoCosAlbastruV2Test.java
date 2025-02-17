@@ -35,7 +35,8 @@ public class AutoCosAlbastruV2Test extends LinearOpMode {
         BratGheara brat = new BratGheara(hardwareMap);
         Glisiera glisiera = new Glisiera(hardwareMap);
 
-        Pose2d pozitieInitiala= new Pose2d(-17.8, -70.1, 1.56);
+
+        Pose2d pozitieInitiala= new Pose2d(39.9, 70.1, -89.5);
         MecanumDrive drive = new MecanumDrive(hardwareMap, pozitieInitiala);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-80.0,80.0);
@@ -54,54 +55,59 @@ public class AutoCosAlbastruV2Test extends LinearOpMode {
         ));
 
         TrajectoryActionBuilder scorePreload = drive.actionBuilder(pozitieInitiala)
-                .strafeToConstantHeading(new Vector2d(-17, -64), speedSlow, accSlow)
-                .strafeToConstantHeading(new Vector2d(-65, -61.5), speedSlow, accSlow)
-                .turnTo(79.3);
+                .strafeToConstantHeading(new Vector2d(39.9, 64), speedSlow, accSlow)
+                .strafeToConstantHeading(new Vector2d(63.5, 61.5), speedSlow, accSlow)
+                .strafeToConstantHeading(new Vector2d(64, 62), speedSlow, accSlow)
+                .turnTo(358.9);
 
         TrajectoryActionBuilder prevDrumToSample1 = scorePreload.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, -63), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(59, 63), speedFast, accFast);
 
         TrajectoryActionBuilder drumToSample1 = prevDrumToSample1.endTrajectory().fresh()
-                .turnTo(1.56)
-                .strafeToConstantHeading(new Vector2d(-55, -53), speedFast, accFast);
+                .turnTo(-89.5)
+                .strafeToConstantHeading(new Vector2d(53, 53), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample1 = drumToSample1.endTrajectory().fresh()
-                .turnTo(79.1)
-                .strafeToConstantHeading(new Vector2d(-65, -65), speedFast, accFast);  //-66 cu -66 dadea doar putin //-68, -67
+                .turnTo(88.4)
+                .strafeToConstantHeading(new Vector2d(65, 65), speedFast, accFast);  //-66 cu -66 dadea doar putin //-68, -67
 
         TrajectoryActionBuilder prevDrumToSample2 = scoreSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, -63), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(59, 63), speedFast, accFast);
 
         TrajectoryActionBuilder drumToSample2 = prevDrumToSample2.endTrajectory().fresh()
-                .turnTo(1.56)
-                .strafeToConstantHeading(new Vector2d(-67, -52 ), speedFast, accFast);
+                .turnTo(-89.5)
+                .strafeToConstantHeading(new Vector2d(65, 52 ), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample2 = drumToSample2.endTrajectory().fresh()
-                .turnTo(79.1)
-                .strafeToConstantHeading(new Vector2d(-65, -65), speedFast, accFast);
+                .turnTo(88.4)
+                .strafeToConstantHeading(new Vector2d(65, 65), speedFast, accFast);
         // sample 3
         TrajectoryActionBuilder prevDrumToSample3= scoreSample2.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59,-63),speedFast,accFast);
+                .strafeToConstantHeading(new Vector2d(58,63),speedFast,accFast);
         TrajectoryActionBuilder drumToSample3=prevDrumToSample3.endTrajectory().fresh()
-                .turnTo(2)
-                .strafeToConstantHeading(new Vector2d(-69.7,-50.8),speedFast,accFast);
+                .turnTo(Math.toRadians(12))
+                .strafeToConstantHeading(new Vector2d(53,50.8),speedFast,accFast);//69.7
 
         TrajectoryActionBuilder scoreSampl3=drumToSample3.endTrajectory().fresh()
-                .turnTo(240)
-                .turnTo(79.1)
-                .strafeToConstantHeading(new Vector2d(-65,-65),speedFast,accFast);
+                .turnTo(Math.toRadians(180))
+                .turnTo(95)
+                .strafeToConstantHeading(new Vector2d(65,65),speedFast,accFast);
 
         TrajectoryActionBuilder prevParcare = scoreSample2.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-50, -15), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(50, 15), speedFast, accFast)
                 .turnTo(7)
                 .turnTo(-0.1);
 
         TrajectoryActionBuilder parcare = prevParcare.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-30, -5),speedSlow ,accSlow);
+                .strafeToConstantHeading(new Vector2d(30, 5),speedSlow ,accSlow);
 
         Actions.runBlocking(brat.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
+
         //Actions.runBlocking(brat.pozitioneazaBratParcareCos());
+
+
+     //   Actions.runBlocking(gheara.inchideGhearaPentruColectareSamplePerete());
 
         waitForStart();
 
