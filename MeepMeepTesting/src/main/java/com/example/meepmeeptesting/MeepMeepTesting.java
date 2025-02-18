@@ -26,7 +26,13 @@ public class MeepMeepTesting {
                        // .splineToSplineHeading(new Pose2d(-57,57,-1.56),90)
                         .setTangent(3.2 * Math.PI / 2)
                         .splineToLinearHeading(new Pose2d(-6, 65, 3.2 * Math.PI/2),-270)
+                        .setTangent(-80)
+                         .splineToLinearHeading(new Pose2d(-57, 56, -80),-270)
                         //.splineToSplineHeading(new Pose2d(-0,45,-1.56), -270)
+                .setTangent(3.2 * Math.PI / 2)
+                .splineToLinearHeading(new Pose2d(-6, 65, 3.2 * Math.PI/2),-270)
+                .setTangent(Math.PI/2)
+                .splineToLinearHeading(new Pose2d(-57, 56, Math.PI/2),-270)
 
 
 
