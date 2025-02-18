@@ -54,7 +54,7 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
 
         //prima actiune este cea in care mergem la bara sa punem preload
         TrajectoryActionBuilder drumPreload = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(-0, 35), speedFast, accFast);    // are 37 // -40
+                .strafeToConstantHeading(new Vector2d(-0, 33), speedFast, accFast);    // are 37 // -40
 
         TrajectoryActionBuilder plecareDupaPreload=drumPreload.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(-46, 45), speedFast, accFast);
