@@ -25,16 +25,16 @@ import org.firstinspires.ftc.teamcode.Subsystems.Gheara;
 import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 
 
-@Autonomous(name="AlbastruBaraV2Test", group = "Autonomous")
+@Autonomous(name="SplineAutoIncercare", group = "Autonomous")
 
-public class AlbastruBaraV2Test extends LinearOpMode {
+public class SplineAutoIncercare extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         Gheara gheara = new Gheara(hardwareMap);
         Glisiera glisiera = new Glisiera(hardwareMap);
         BratGheara brat = new BratGheara(hardwareMap);
 
-        Pose2d pose = new Pose2d(-23.6, 70.3, -1.56);    //heading era 80.1
+        Pose2d pose = new Pose2d(-59, 50, -85.9);    //heading era 80.1
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-130.0,130.0);
@@ -54,7 +54,9 @@ public class AlbastruBaraV2Test extends LinearOpMode {
 
         //prima actiune este cea in care mergem la bara sa punem preload
         TrajectoryActionBuilder drumPreload = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(-0, 35), speedFast, accFast);    // are 37 // -40
+                //.strafeToConstantHeading(new Vector2d(-0, 35), speedFast, accFast);    // are 37 // -40
+                .setTangent(3.3 * Math.PI/2)
+                .splineToSplineHeading(new Pose2d(-6,65,3.3 * Math.PI/2),270);
 
         TrajectoryActionBuilder plecareDupaPreload=drumPreload.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(-46, 45), speedFast, accFast);
@@ -91,7 +93,7 @@ public class AlbastruBaraV2Test extends LinearOpMode {
                 .turnTo(-80)
                 .strafeToConstantHeading(new Vector2d(-10, 50), speedFast, accFast)
                 .strafeToConstantHeading(new Vector2d(-57, 56), speedFast, accFast);
-               // .strafeToConstantHeading(new Vector2d(-59, 63), speedFast, accFast);
+        // .strafeToConstantHeading(new Vector2d(-59, 63), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
                 .turnTo(-1.65)
@@ -138,7 +140,7 @@ public class AlbastruBaraV2Test extends LinearOpMode {
         Action actPrepareToTakeSample2 = prepareToTakeSample2.build();
         Action actScoreSample2 = scoreSample2.build();
         // sample 3
-       // Action actPrepareToTakeSample3=prepareToTakeSample3.build();
+        // Action actPrepareToTakeSample3=prepareToTakeSample3.build();
         //Action actscoreSample3=scoreSample3.build();
         Action actParcare = parcheaza.build();
 
@@ -150,9 +152,9 @@ public class AlbastruBaraV2Test extends LinearOpMode {
                         new ParallelAction(
                                 actPreload,
                                 glisiera.glisieraSusJumate()
-                        ),
+                        )
 
-                        glisiera.glisieraOutake(),
+                      /*  glisiera.glisieraOutake(),
                         // aici lasare gheara
                         actPlecareDupaPreload,
 
@@ -218,7 +220,7 @@ public class AlbastruBaraV2Test extends LinearOpMode {
                                 glisiera.glisieraSusJumate()
                         ),
                         glisiera.glisieraOutake(),*/
-                        actParcare
+                        //actParcare
 
                 )
         );
