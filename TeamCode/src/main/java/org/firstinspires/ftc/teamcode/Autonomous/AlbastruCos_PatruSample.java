@@ -39,7 +39,7 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
         Pose2d pozitieInitiala= new Pose2d(39.9, 70.1, -89.5);
         MecanumDrive drive = new MecanumDrive(hardwareMap, pozitieInitiala);
 
-        AccelConstraint accFast=new ProfileAccelConstraint(-130.0,130.0);
+        AccelConstraint accFast=new ProfileAccelConstraint(-105.0,105.0);
         AccelConstraint accSlow = new ProfileAccelConstraint(-45.0, 90.0);
 
         VelConstraint speedFast= new MinVelConstraint(Arrays.asList(
@@ -58,10 +58,9 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
 
         TrajectoryActionBuilder scorePreload = drive.actionBuilder(pozitieInitiala)
                 .strafeToConstantHeading(new Vector2d(39.9, 64), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(63.5, 61.5), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(61.5, 61.5), speedFast, accFast)  //63.5
                 .strafeToConstantHeading(new Vector2d(64, 64), speedFast, accFast)
                 .turnTo(358.9);
-
 
 
         // sample 1
@@ -72,7 +71,7 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
 
         TrajectoryActionBuilder drumToSample1 = prevDrumToSample1.endTrajectory().fresh()
                 .turnTo(-89.5)
-                .strafeToConstantHeading(new Vector2d(53, 53), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(52, 52), speedFast, accFast);
 
         TrajectoryActionBuilder scoreSample1 = drumToSample1.endTrajectory().fresh()
                 .turnTo(88.4)
@@ -87,12 +86,11 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
 
         TrajectoryActionBuilder drumToSample2 = prevDrumToSample2.endTrajectory().fresh()
                 .turnTo(-89.5)
-                .strafeToConstantHeading(new Vector2d(65, 51 ), speedFast, accFast);        // aici am modificat y era 52 -> 18.02
+                .strafeToConstantHeading(new Vector2d(64, 52 ), speedFast, accFast);        // aici am modificat y era 52 -> 18.02
 
         TrajectoryActionBuilder scoreSample2 = drumToSample2.endTrajectory().fresh()
                 .turnTo(88.4)
-                .strafeToConstantHeading(new Vector2d(65, 65), speedFast, accFast);
-
+                .strafeToConstantHeading(new Vector2d(64, 64), speedFast, accFast); // x a fost 65
 
 
         // sample 3
@@ -103,21 +101,20 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
                 .strafeToConstantHeading(new Vector2d(59,59),speedFast,accFast);
 
         TrajectoryActionBuilder drumToSample3=prevDrumToSample3.endTrajectory().fresh()
-                .turnTo(Math.toRadians(12))
-                .strafeToConstantHeading(new Vector2d(53,50.8),speedFast,accFast);//69.7
+                .turnTo(270.1)
+                .strafeToConstantHeading(new Vector2d(55.8,32),speedFast,accFast);// 55.5 mergea la un moment dat// 53.5//69.7
 
         TrajectoryActionBuilder scoreSample3=drumToSample3.endTrajectory().fresh()
-                .turnTo(Math.toRadians(180))
+               // .turnTo(Math.toRadians(180))
                 .turnTo(95)
                 .strafeToConstantHeading(new Vector2d(65,65),speedFast,accFast);
 
-
         // parcare
 
-        TrajectoryActionBuilder prevParcare = scoreSample2.endTrajectory().fresh()
+        TrajectoryActionBuilder prevParcare = scoreSample3.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(50, 15), speedFast, accFast)
-                .turnTo(7)
-                .turnTo(-0.1);
+                .turnTo(60);
+               // .turnTo(-0.1);
 
         TrajectoryActionBuilder parcare = prevParcare.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(30, 5),speedFast ,accFast);
@@ -125,9 +122,7 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
         Actions.runBlocking(brat.ridicareGhearaBrat());
         Actions.runBlocking(gheara.prindereGheara());
 
-
         waitForStart();
-
 
         if(isStopRequested()){
             return;
@@ -217,7 +212,7 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
                                 actScoreSample2,
                                 glisiera.glisieraSusCosRapid()
                         ),
-                        gheara.lasareGheara(),
+                        gheara.deschideGhearaPentruSamplePerete(),
 
 
                         // sample 3
@@ -229,7 +224,7 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
                         ),
                         brat.pozitioneazaBratPentruSampleDePeTeren(),
                         new SleepAction(0.5),
-                        gheara.prindereGheara(),
+                        gheara.inchideGhearaPentruColectareSamplePerete(),
                         new SleepAction(0.3),
                         new ParallelAction(
                                 brat.ridicareGhearaBrat(),

@@ -22,10 +22,32 @@ public class MeepMeepTesting {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(39.9, 70.1, -89.5)) //17.8 70.1
-                        .strafeToConstantHeading(new Vector2d(58,63))
-                        .turnTo(24)
-                        .strafeToConstantHeading(new Vector2d(67,50.8))
-                .turnTo(Math.toRadians(10))
+                   /*    .strafeToConstantHeading(new Vector2d(39.9,64))
+                        .strafeToConstantHeading(new Vector2d(63.5,61.5))
+                        .strafeToConstantHeading(new Vector2d(64,65))
+                .turnTo(358.9)
+                .strafeToConstantHeading(new Vector2d(59, 59))
+                .turnTo(-89.5)
+                .strafeToConstantHeading(new Vector2d(53, 53))
+                .turnTo(88.4)
+                .strafeToConstantHeading(new Vector2d(65, 65))
+                .strafeToConstantHeading(new Vector2d(59, 59))
+                .turnTo(-89.5)
+                .strafeToConstantHeading(new Vector2d(65, 51 ))
+                .turnTo(88.4)*/
+                .strafeToConstantHeading(new Vector2d(65, 65))
+                //
+                .strafeToConstantHeading(new Vector2d(59,59))
+                .turnTo(270.2)
+                .strafeToConstantHeading(new Vector2d(53,50.8))
+               // .turnTo(Math.toRadians(180))
+                .turnTo(95)
+                .strafeToConstantHeading(new Vector2d(65,65))
+                .strafeToConstantHeading(new Vector2d(50, 15))
+                .turnTo(60)
+                //.turnTo(-0.1)
+                .strafeToConstantHeading(new Vector2d(30, 5))
+
               //  .turnTo(95)
                       //  .strafeToConstantHeading(new Vector2d(65,65))
                 //.turnTo(Math.toRadians(-1.56))
