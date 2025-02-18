@@ -54,11 +54,17 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
 
         ));
 
+        // preload
+
         TrajectoryActionBuilder scorePreload = drive.actionBuilder(pozitieInitiala)
                 .strafeToConstantHeading(new Vector2d(39.9, 64), speedFast, accFast)
                 .strafeToConstantHeading(new Vector2d(63.5, 61.5), speedFast, accFast)
                 .strafeToConstantHeading(new Vector2d(64, 64), speedFast, accFast)
                 .turnTo(358.9);
+
+
+
+        // sample 1
 
         //aici se da in spate pana sa coboare glisiera
         TrajectoryActionBuilder prevDrumToSample1 = scorePreload.endTrajectory().fresh()
@@ -72,6 +78,9 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
                 .turnTo(88.4)
                 .strafeToConstantHeading(new Vector2d(65, 65), speedFast, accFast);  //-66 cu -66 dadea doar putin //-68, -67
 
+
+        // sample 2
+
         //aici se da in spate pana sa coboare glisiera
         TrajectoryActionBuilder prevDrumToSample2 = scoreSample1.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(59, 59), speedFast, accFast);
@@ -84,7 +93,11 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
                 .turnTo(88.4)
                 .strafeToConstantHeading(new Vector2d(65, 65), speedFast, accFast);
 
+
+
         // sample 3
+
+
         //aici se da in spate pana sa coboare glisiera
         TrajectoryActionBuilder prevDrumToSample3= scoreSample2.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(59,59),speedFast,accFast);
@@ -97,6 +110,9 @@ public class AlbastruCos_PatruSample extends LinearOpMode {
                 .turnTo(Math.toRadians(180))
                 .turnTo(95)
                 .strafeToConstantHeading(new Vector2d(65,65),speedFast,accFast);
+
+
+        // parcare
 
         TrajectoryActionBuilder prevParcare = scoreSample2.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(50, 15), speedFast, accFast)
