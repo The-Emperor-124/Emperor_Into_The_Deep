@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Autonomous;
+package org.firstinspires.ftc.teamcode.AutoReziduu;
 
 import com.acmerobotics.roadrunner.AccelConstraint;
 import com.acmerobotics.roadrunner.Action;
@@ -174,6 +174,8 @@ public class AlbastruBaraV2Test extends LinearOpMode {
 
                         new SleepAction(0.4),
                         actTakeSample1,
+
+
                         brat.prindeSampleDePePerete(),
                         new SleepAction(0.4),
                         gheara.prindereGheara(),

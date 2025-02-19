@@ -129,6 +129,8 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
 
 
 
+
+
         // actiuni executate inainte de start program
 
         Actions.runBlocking(gheara.prindereGheara());
