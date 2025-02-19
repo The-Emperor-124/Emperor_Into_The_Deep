@@ -34,7 +34,7 @@ public class SplineAutoIncercare extends LinearOpMode {
         Glisiera glisiera = new Glisiera(hardwareMap);
         BratGheara brat = new BratGheara(hardwareMap);
 
-        Pose2d pose = new Pose2d(-59, 50, -85.9);    //heading era 80.1
+        Pose2d pose = new Pose2d(5, -37,-3 * Math.PI/2); //heading era 80.1
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-130.0,130.0);
@@ -55,8 +55,10 @@ public class SplineAutoIncercare extends LinearOpMode {
         //prima actiune este cea in care mergem la bara sa punem preload
         TrajectoryActionBuilder drumPreload = drive.actionBuilder(pose)
                 //.strafeToConstantHeading(new Vector2d(-0, 35), speedFast, accFast);    // are 37 // -40
-                .setTangent(3.3 * Math.PI/2)
-                .splineToSplineHeading(new Pose2d(-6,65,3.3 * Math.PI/2),270);
+               /* .setTangent(-3*Math.PI / 2)        // cu -80 nu se rotea suficient
+                .splineToLinearHeading(new Pose2d(5, -37, -3 * Math.PI/2),-269);*/
+                .setTangent(-Math.PI / 2)
+                .splineToLinearHeading(new Pose2d(57, -60, -Math.PI/2),269);
 
         TrajectoryActionBuilder plecareDupaPreload=drumPreload.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(-46, 45), speedFast, accFast);

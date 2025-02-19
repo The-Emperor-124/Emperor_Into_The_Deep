@@ -24,9 +24,9 @@ import org.firstinspires.ftc.teamcode.others.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Subsystems.Gheara;
 import org.firstinspires.ftc.teamcode.Subsystems.Glisiera;
 
-@Autonomous(name="AlbastruBara_PatruSpecimen", group = "Autonomous")
+@Autonomous(name="RosuBara_PatruSpecimen", group = "Autonomous")
 
-public class AlbastruBara_PatruSpecimen extends LinearOpMode {
+public class RosuBara_PatruSpecimen extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -34,7 +34,7 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
         Glisiera glisiera = new Glisiera(hardwareMap);
         BratGheara brat = new BratGheara(hardwareMap);
 
-        Pose2d pose = new Pose2d(-23.6, 70.3, -1.56);    //heading era 80.1
+        Pose2d pose = new Pose2d(23.6, -70.3, 1.56);     //heading era 80.1
         MecanumDrive drive = new MecanumDrive(hardwareMap, pose);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-130.0,130.0);
@@ -58,80 +58,70 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
 
         //prima actiune este cea in care mergem la bara sa punem preload
         TrajectoryActionBuilder drumPreload = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(-0, 32.5), speedFast, accFast);    // are 37 // -40
+                .strafeToConstantHeading(new Vector2d(0, -32.5), speedFast, accFast);    // are 37 // -40
 
         TrajectoryActionBuilder plecareDupaPreload=drumPreload.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-45, 45), speedFast, accFast);    // 46 la x si jos la fel
-
+                .strafeToConstantHeading(new Vector2d(45, -45), speedFast, accFast);    // 46 la x si jos la fel
 
         // pregatire inca 2 sample uri
 
         TrajectoryActionBuilder ajungereSample1 = plecareDupaPreload.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-45, 12.5), speedFast, accFast)         //trebuie testat si x = 52
-                .strafeToConstantHeading(new Vector2d(-53, 12.5), speedFast, accFast);   // la 52 ia cu coltu   // - 57
+                .strafeToConstantHeading(new Vector2d(45, -12.5), speedFast, accFast)         //trebuie testat si x = 52
+                .strafeToConstantHeading(new Vector2d(53, -12.5), speedFast, accFast);   // la 52 ia cu coltu   // - 57
 
         TrajectoryActionBuilder prepareSample1 = ajungereSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-57, 57), speedFast, accFast);
+                .strafeToConstantHeading(new Vector2d(57, -57), speedFast, accFast);
 
         TrajectoryActionBuilder ajungereSample2 = prepareSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-57, 13), speedFast, accFast)
-                .strafeToConstantHeading(new Vector2d(-66, 13), speedFast, accFast);    // era - 67
+                .strafeToConstantHeading(new Vector2d(57, -13), speedFast, accFast)
+                .strafeToConstantHeading(new Vector2d(66, -13), speedFast, accFast);    // era - 67
 
         TrajectoryActionBuilder prepareSample2 = ajungereSample2.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-67, 57), speedFast, accFast);
-
-
+                .strafeToConstantHeading(new Vector2d(67, -57), speedFast, accFast);
 
         // for specimen 2
 
         TrajectoryActionBuilder prepareToTakeSample1 = prepareSample2.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, 50), speedFast, superFast
-                )
-                .turnTo(-80);
+                .strafeToConstantHeading(new Vector2d(59, -50), speedFast, superFast)
+                .turnTo(80);
 
 
         TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, 57.5), speedFast, superFast);//57
+                .strafeToConstantHeading(new Vector2d(59, -57.5), speedFast, superFast);//57
 
         TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
                 .setTangent(-3 * Math.PI/2)        // 3.3 era inainte si mergea cu actiune singulara
-                .splineToSplineHeading(new Pose2d(-10,64,3.25 * Math.PI/2),270, speedFast, superFast)   // 65
-                .strafeToConstantHeading(new Vector2d(-10,52), speedFast, superFast);
+                .splineToSplineHeading(new Pose2d(5,-40,-3 * Math.PI/2),-269, speedFast, superFast);   // 65
+                //.strafeToConstantHeading(new Vector2d(10,-52), speedFast, superFast);
 
         TrajectoryActionBuilder prepareToTakeSample2 = scoreSample1.endTrajectory().fresh()
-                .setTangent(Math.PI / 2)        // cu -80 nu se rotea suficient
-                .splineToLinearHeading(new Pose2d(-57, 58, -79.9),-270, speedFast, superFast);
+                .setTangent(-Math.PI / 2)        // cu -80 nu se rotea suficient
+                .splineToLinearHeading(new Pose2d(57, -58, -Math.PI/2),269, speedFast, superFast);  // era -58 peste tot a y prepare
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
-                .setTangent(3.25 * Math.PI/2)
-                .splineToSplineHeading(new Pose2d(-10,62,3.25 * Math.PI/2),270, speedFast, superFast)//3.25 * Math.PI/2
-                .strafeToConstantHeading(new Vector2d(-8, 52), speedFast, superFast);
-
+                .setTangent(-3.25 * Math.PI/2)
+                .splineToSplineHeading(new Pose2d(10,-40,-3.25 * Math.PI/2),0, speedFast, superFast);//3.25 * Math.PI/2
+                //.strafeToConstantHeading(new Vector2d(8, -52), speedFast, superFast);
 
         // sample 3
         TrajectoryActionBuilder prepareToTakeSample3 = scoreSample2.endTrajectory().fresh()
-                .setTangent(-80)
-                .splineToLinearHeading(new Pose2d(-57, 58, -79.8),-270, speedFast, superFast);
+                .setTangent(-Math.PI/2)
+                .splineToLinearHeading(new Pose2d(57, -56, -Math.PI/2),0, speedFast, superFast);
 
         TrajectoryActionBuilder scoreSample3 = prepareToTakeSample3.endTrajectory().fresh()
-                .setTangent(3.25 * Math.PI/2)
-                .splineToSplineHeading(new Pose2d(-10,55.3,3.25 * Math.PI/2),270, speedFast, superFast)
-                .strafeToConstantHeading(new Vector2d(-7, 52), speedFast, superFast);
-
-
+                .setTangent(-3 * Math.PI/2)
+                .splineToSplineHeading(new Pose2d(8,-40,-3 * Math.PI/2),0, speedFast, superFast);
+                //.strafeToConstantHeading(new Vector2d(7, -52), speedFast, superFast);
 
         //parcare
 
         TrajectoryActionBuilder parcheaza = scoreSample3.endTrajectory().fresh()
-                .setTangent(-80)
-                .splineToLinearHeading(new Pose2d(-57, 58, -80),-270, speedFast, superFast);
-
-
-
-
+                .setTangent(80)
+                .splineToLinearHeading(new Pose2d(57, -58, 80),0, speedFast, superFast);
+        
         // actiuni executate inainte de start program
 
-        Actions.runBlocking(gheara.prindereGheara());
+        Actions.runBlocking(gheara.prindereGhearaStrans());
         Actions.runBlocking(gheara.ridicareGhearaBrat());
 
 
@@ -210,7 +200,7 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
                         actTakeSample1,
                         brat.prindeSampleDePePerete(),
                         new SleepAction(0.4),
-                        gheara.prindereGheara(),
+                        gheara.prindereGhearaStrans(),
                         new SleepAction(0.4),
                         new ParallelAction(
                                 gheara.ridicareGhearaBrat(),
@@ -228,7 +218,7 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
 
                         brat.prindeSampleDePePerete(),
                         new SleepAction(0.4),
-                        gheara.prindereGheara(),
+                        gheara.prindereGhearaStrans(),
                         new SleepAction(0.4),
 
                         new ParallelAction(
@@ -246,7 +236,7 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
                         ),
                         brat.prindeSampleDePePerete(),
                         new SleepAction(0.4),
-                        gheara.prindereGheara(),
+                        gheara.prindereGhearaStrans(),
                         new SleepAction(0.5),
 
                         new ParallelAction(

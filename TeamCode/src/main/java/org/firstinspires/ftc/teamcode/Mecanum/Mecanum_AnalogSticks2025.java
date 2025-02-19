@@ -154,11 +154,11 @@ public class Mecanum_AnalogSticks2025 extends LinearOpMode {
                 servo_tg1.setPosition(0.52); //era 0.55
                 servo_tg2.setPosition(0.52);
             }
-            if(gamepad2.dpad_left)
+           /* if(gamepad2.dpad_left)
             {
                 servo_tg2.setPosition(0.67); //era 0.65
                 servo_tg1.setPosition(0.67);
-            }
+            }*/
             if(gamepad2.dpad_right)
             {
                 servo_tg1.setPosition(0.77); //era 0.79 la ambele, dar era prea jos

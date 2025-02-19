@@ -43,9 +43,12 @@ public class Gheara {
     }
 
     // asta ar trb sa fie pozitia stass de prins sample in orice program
+    public Action prindereGhearaStrans(){
+        return ghearaAction(0.89, 0.30);
+    }
     public Action prindereGheara(){
         return ghearaAction(0.85, 0.30);
-    } //era 0.94 si -0.98
+    } //era 0.94 si -0.98   //19.02.2025      0.85
 
     // asta e pozitia stass de lasat orice sample in orice program
     public Action lasareGheara(){
@@ -62,6 +65,9 @@ public class Gheara {
     public Action inchideGhearaPentruColectareSamplePerete(){
         return ghearaAction(0.73, 0.38);
     }
+
+
+
 
     // asta ar trebui sa fie stass pentru toate, brat gheara vertical
     public Action ridicareGhearaBrat(){
