@@ -58,10 +58,10 @@ public class RosuBara_PatruSpecimen extends LinearOpMode {
 
         //prima actiune este cea in care mergem la bara sa punem preload
         TrajectoryActionBuilder drumPreload = drive.actionBuilder(pose)
-                .strafeToConstantHeading(new Vector2d(0, -32.5), speedFast, accFast);    // are 37 // -40
+                .strafeToConstantHeading(new Vector2d(0, -36), speedFast, accFast);    // are 37 // -40 //era 0 si -32.5
 
         TrajectoryActionBuilder plecareDupaPreload=drumPreload.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(45, -45), speedFast, accFast);    // 46 la x si jos la fel
+                .strafeToConstantHeading(new Vector2d(45, -50), speedFast, accFast);    // 46 la x si jos la fel //era y -45
 
         // pregatire inca 2 sample uri
 
@@ -83,7 +83,7 @@ public class RosuBara_PatruSpecimen extends LinearOpMode {
 
         TrajectoryActionBuilder prepareToTakeSample1 = prepareSample2.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(59, -50), speedFast, superFast)
-                .turnTo(80);
+                .turnTo(80); //era 80 dar transformai in pi
 
 
         TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
@@ -91,34 +91,35 @@ public class RosuBara_PatruSpecimen extends LinearOpMode {
 
         TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
                 .setTangent(-3 * Math.PI/2)        // 3.3 era inainte si mergea cu actiune singulara
-                .splineToSplineHeading(new Pose2d(5,-40,-3 * Math.PI/2),-269, speedFast, superFast);   // 65
+                .splineToSplineHeading(new Pose2d(5,-37,-3 * Math.PI/2),-269, speedFast, superFast); // 65
+
                 //.strafeToConstantHeading(new Vector2d(10,-52), speedFast, superFast);
 
         TrajectoryActionBuilder prepareToTakeSample2 = scoreSample1.endTrajectory().fresh()
                 .setTangent(-Math.PI / 2)        // cu -80 nu se rotea suficient
-                .splineToLinearHeading(new Pose2d(57, -58, -Math.PI/2),269, speedFast, superFast);  // era -58 peste tot a y prepare
+                .splineToLinearHeading(new Pose2d(57, -55, 79.9*1.001),269, speedFast, superFast);  // era -58 peste tot a y prepare
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
-                .setTangent(-3.25 * Math.PI/2)
-                .splineToSplineHeading(new Pose2d(10,-40,-3.25 * Math.PI/2),0, speedFast, superFast);//3.25 * Math.PI/2
+                .setTangent(-3 * Math.PI/2)
+                .splineToSplineHeading(new Pose2d(10,-39,-3 * Math.PI/2),-269, speedFast, superFast);//3.25 * Math.PI/2
                 //.strafeToConstantHeading(new Vector2d(8, -52), speedFast, superFast);
 
         // sample 3
         TrajectoryActionBuilder prepareToTakeSample3 = scoreSample2.endTrajectory().fresh()
                 .setTangent(-Math.PI/2)
-                .splineToLinearHeading(new Pose2d(57, -56, -Math.PI/2),0, speedFast, superFast);
+                .splineToLinearHeading(new Pose2d(57, -58, 79.9*1.001),269, speedFast, superFast);
 
         TrajectoryActionBuilder scoreSample3 = prepareToTakeSample3.endTrajectory().fresh()
                 .setTangent(-3 * Math.PI/2)
-                .splineToSplineHeading(new Pose2d(8,-40,-3 * Math.PI/2),0, speedFast, superFast);
+                .splineToSplineHeading(new Pose2d(8,-39,-3 * Math.PI/2),-269, speedFast, superFast);
                 //.strafeToConstantHeading(new Vector2d(7, -52), speedFast, superFast);
 
         //parcare
 
         TrajectoryActionBuilder parcheaza = scoreSample3.endTrajectory().fresh()
                 .setTangent(80)
-                .splineToLinearHeading(new Pose2d(57, -58, 80),0, speedFast, superFast);
-        
+                .splineToLinearHeading(new Pose2d(57, -58, 80),269, speedFast, superFast);
+
         // actiuni executate inainte de start program
 
         Actions.runBlocking(gheara.prindereGhearaStrans());

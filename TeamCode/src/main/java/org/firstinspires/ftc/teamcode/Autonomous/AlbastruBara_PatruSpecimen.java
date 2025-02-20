@@ -85,38 +85,37 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
         // for specimen 2
 
         TrajectoryActionBuilder prepareToTakeSample1 = prepareSample2.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, 50), speedFast, superFast
-                )
+                .strafeToConstantHeading(new Vector2d(-59, 50), speedFast, superFast)     // era 50 20.2
                 .turnTo(-80);
 
 
         TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(-59, 57.5), speedFast, superFast);//57
+                .strafeToConstantHeading(new Vector2d(-59, 58.4), speedFast, superFast);//57.5 20.2
 
         TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
                 .setTangent(-3 * Math.PI/2)        // 3.3 era inainte si mergea cu actiune singulara
-                .splineToSplineHeading(new Pose2d(-10,64,3.25 * Math.PI/2),270, speedFast, superFast)   // 65
-                .strafeToConstantHeading(new Vector2d(-10,52), speedFast, superFast);
+                .splineToSplineHeading(new Pose2d(-10,53.1,3.25 * Math.PI/2),270, speedFast, superFast) ; // 54.7  // y era 55 // 65
+                //.strafeToConstantHeading(new Vector2d(-10,52), speedFast, superFast);
 
         TrajectoryActionBuilder prepareToTakeSample2 = scoreSample1.endTrajectory().fresh()
                 .setTangent(Math.PI / 2)        // cu -80 nu se rotea suficient
-                .splineToLinearHeading(new Pose2d(-57, 58, -79.9),-270, speedFast, superFast);
+                .splineToLinearHeading(new Pose2d(-57, 60.4, -79.9),-270, speedFast, superFast);    // 60        // y era 58 20.02
 
         TrajectoryActionBuilder scoreSample2 = prepareToTakeSample2.endTrajectory().fresh()
                 .setTangent(3.25 * Math.PI/2)
-                .splineToSplineHeading(new Pose2d(-10,62,3.25 * Math.PI/2),270, speedFast, superFast)//3.25 * Math.PI/2
-                .strafeToConstantHeading(new Vector2d(-8, 52), speedFast, superFast);
+                .splineToSplineHeading(new Pose2d(-10,53.6,3.25 * Math.PI/2),270, speedFast, superFast); //3.25 * Math.PI/2
+                //.strafeToConstantHeading(new Vector2d(-8, 50.5), speedFast, superFast);     // 52
 
 
         // sample 3
         TrajectoryActionBuilder prepareToTakeSample3 = scoreSample2.endTrajectory().fresh()
                 .setTangent(-80)
-                .splineToLinearHeading(new Pose2d(-57, 58, -79.8),-270, speedFast, superFast);
+                .splineToLinearHeading(new Pose2d(-57, 61.1, -79.8),-270, speedFast, superFast);      // era 58 20.02
 
         TrajectoryActionBuilder scoreSample3 = prepareToTakeSample3.endTrajectory().fresh()
                 .setTangent(3.25 * Math.PI/2)
-                .splineToSplineHeading(new Pose2d(-10,55.3,3.25 * Math.PI/2),270, speedFast, superFast)
-                .strafeToConstantHeading(new Vector2d(-7, 52), speedFast, superFast);
+                .splineToSplineHeading(new Pose2d(-10,54.3,3.25 * Math.PI/2),270, speedFast, superFast);
+                //.strafeToConstantHeading(new Vector2d(-7, 50.5), speedFast, superFast);
 
 
 
@@ -217,7 +216,7 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
                         new ParallelAction(
                                 gheara.ridicareGhearaBrat(),
                                 actScoreSample1,
-                                glisiera.glisieraSusJumate()
+                                glisiera.glisieraSusJumateSpecimen12()
                         ),
                         glisiera.glisieraOutake(),
 
@@ -236,7 +235,7 @@ public class AlbastruBara_PatruSpecimen extends LinearOpMode {
                         new ParallelAction(
                                 gheara.ridicareGhearaBrat(),
                                 actScoreSample2,
-                                glisiera.glisieraSusJumate()
+                                glisiera.glisieraSusJumateSpecimen12()
                         ),
                         glisiera.glisieraOutake(),
 

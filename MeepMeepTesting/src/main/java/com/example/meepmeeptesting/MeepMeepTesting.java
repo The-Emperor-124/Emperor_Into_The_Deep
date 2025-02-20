@@ -22,9 +22,48 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(59, -57.5, 80)) //17.8 70.1
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-39.9, -70.1, 89.5)) //17.8 70.1
+               /* .strafeToConstantHeading(new Vector2d(-39.9, -64))
+                .strafeToConstantHeading(new Vector2d(-61.5, -63))  //63.5
+//.strafeToConstantHeading(new Vector2d(-64, -64))
+                .turnTo(79.3)
+                .strafeToConstantHeading(new Vector2d(-57, -57))
+                .turnTo(1.56)
+                .strafeToConstantHeading(new Vector2d(-49.5, -52))
+                .turnTo(79.1)
+                .strafeToConstantHeading(new Vector2d(-58.5, -60))
+                .strafeToConstantHeading(new Vector2d(-59, -59))
+                .turnTo(1.56)
+                .strafeToConstantHeading(new Vector2d(-61, -52))
+                .turnTo(79.1)
+                .strafeToConstantHeading(new Vector2d(-64, -64))*/
+                .strafeToConstantHeading(new Vector2d(-59,-59))
+                .turnTo(84.6)
+                .strafeToConstantHeading(new Vector2d(-55.8,-32))
+                .turnTo(79.1)
+                .strafeToConstantHeading(new Vector2d(-65,-65))
+                .strafeToConstantHeading(new Vector2d(-45, -15))
+                .turnTo(0 * Math.PI)
+                        //.setTangent(-90)
+                        //.splineToConstantHeading(new Vector2d(45,-12.5),90)
+                /*.setTangent(-3 * Math.PI/2)        // 3.3 era inainte si mergea cu actiune singulara
+                .splineToSplineHeading(new Pose2d(5,-40,-3 * Math.PI/2),-269)
+                        //.turnTo(1.56)
+                .setTangent(-Math.PI / 2)        // cu -80 nu se rotea suficient
+                .splineToLinearHeading(new Pose2d(57, -52, -Math.PI / 2),269)
+              //  .turnTo(-1.56)
+                .setTangent(-3 * Math.PI/2)
+                .splineToSplineHeading(new Pose2d(10,-40,-3 * Math.PI/2),-269)//3 * Math.PI/2
 
-                .setTangent( -3 * Math.PI / 2)        // cu -80 nu se rotea suficient
+                .setTangent(-Math.PI/2)
+                .splineToLinearHeading(new Pose2d(57, -58, -Math.PI/2),269)
+               // .turnTo(-1.56)
+
+                .setTangent(-3 * Math.PI/2)
+                .splineToSplineHeading(new Pose2d(10,-40,-3 * Math.PI/2),-269)
+               // .setTangent(80)
+                //.splineToLinearHeading(new Pose2d(57, -58, 80),269)
+              /*  .setTangent( -3 * Math.PI / 2)        // cu -80 nu se rotea suficient
                 .splineToLinearHeading(new Pose2d(0, -37,- 3 * Math.PI/2),-269)
 
                 /*
@@ -33,8 +72,12 @@ public class MeepMeepTesting {
                 .splineToLinearHeading(new Pose2d(0, -37,- 3 * Math.PI/2),-270)
                  */
 //                .strafeToConstantHeading(new Vector2d(10,-52))
-                .setTangent(-Math.PI / 2)
+               /* .setTangent(-Math.PI / 2)
                 .splineToLinearHeading(new Pose2d(57, -58, -Math.PI/2),269)
+                .setTangent(-Math.PI/2)
+                .splineToLinearHeading(new Pose2d(57, -56, -Math.PI/2),269)
+                .setTangent(-3 * Math.PI/2)
+                .splineToSplineHeading(new Pose2d(8,-40,-3 * Math.PI/2),-269)*/
 //                .setTangent(-3.25 * Math.PI/2)
 //                .splineToSplineHeading(new Pose2d(10,-35,-3.25 * Math.PI/2),90)
 //                .strafeToConstantHeading(new Vector2d(8, -52))

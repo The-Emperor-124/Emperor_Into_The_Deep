@@ -49,7 +49,6 @@ public class SplineAutoIncercare extends LinearOpMode {
         VelConstraint speedSlow= new MinVelConstraint(Arrays.asList(
                 new TranslationalVelConstraint(45.0),
                 new AngularVelConstraint(Math.PI / 2)
-
         ));
 
         //prima actiune este cea in care mergem la bara sa punem preload

@@ -44,7 +44,10 @@ public class Glisiera {
     }
 
     public Action glisieraSusJumate(){
-        return GlisieraAction(1358, -1354, 1.0);
+        return GlisieraAction(1267, -1248, 1.0);
+    }
+    public Action glisieraSusJumateSpecimen12(){
+        return GlisieraAction(1290, -1286, 1.0);
     }
 
     public Action glisieraOutake(){
