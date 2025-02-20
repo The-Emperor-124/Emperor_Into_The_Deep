@@ -67,7 +67,7 @@ public class RosuBara_PatruSpecimen extends LinearOpMode {
 
         TrajectoryActionBuilder ajungereSample1 = plecareDupaPreload.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(45, -12.5), speedFast, accFast)         //trebuie testat si x = 52
-                .strafeToConstantHeading(new Vector2d(53, -12.5), speedFast, accFast);   // la 52 ia cu coltu   // - 57
+                .strafeToConstantHeading(new Vector2d(53.5, -12.5), speedFast, accFast);   // la 52 ia cu coltu   // - 57
 
         TrajectoryActionBuilder prepareSample1 = ajungereSample1.endTrajectory().fresh()
                 .strafeToConstantHeading(new Vector2d(57, -57), speedFast, accFast);
@@ -87,7 +87,7 @@ public class RosuBara_PatruSpecimen extends LinearOpMode {
 
 
         TrajectoryActionBuilder takeSample1 = prepareToTakeSample1.endTrajectory().fresh()
-                .strafeToConstantHeading(new Vector2d(59, -57.5), speedFast, superFast);//57
+                .strafeToConstantHeading(new Vector2d(59, -58), speedFast, superFast);// -57.5
 
         TrajectoryActionBuilder scoreSample1 = takeSample1.endTrajectory().fresh()
                 .setTangent(-3 * Math.PI/2)        // 3.3 era inainte si mergea cu actiune singulara
